@@ -64,7 +64,6 @@ export default function ScheduleModal(props) {
             </TouchableOpacity>
             <CalendarPicker
               onDateChange={date => {
-                console.log(date);
                 setDate(new Date(date));
               }}
               scaleFactor={400}
@@ -72,6 +71,7 @@ export default function ScheduleModal(props) {
               selectedDayColor="#e1f0ff"
               selectedDayTextColor="#004b96"
               todayBackgroundColor="#ffffff"
+              width={350}
             />
             <View style={[styles.blueContainer, {marginTop: 0}]}>
               <Text style={styles.blueContainerTitle}>Selected Date</Text>
