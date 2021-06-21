@@ -1,6 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Text, Modal} from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Modal,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 
 import {moment} from 'moment';
@@ -13,11 +19,11 @@ export default function ScheduleModal(props) {
   const minDate = new Date();
   const [availableDates, setAvailableDates] = React.useState([
     {id: 1, time: '9:30', selected: true},
-    {id: 2, time: '10:30', selected: false},
+    {id: 2, time: '10:30', selected: false, disabled: true},
     {id: 3, time: '11:00', selected: false},
     {id: 4, time: '11:30', selected: false},
     {id: 5, time: '12:00', selected: false},
-    {id: 6, time: '12:30', selected: false},
+    {id: 6, time: '12:30', selected: false, disabled: true},
   ]);
 
   onTimeChange = id => {
@@ -32,13 +38,7 @@ export default function ScheduleModal(props) {
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={isVisible}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-      }}>
+    <Modal animationType="slide" transparent={true} visible={isVisible}>
       <View
         style={{
           justifyContent: 'center',
@@ -60,13 +60,13 @@ export default function ScheduleModal(props) {
                 marginRight: 10,
               }}
               onPress={() => close()}>
-              <Text style={{textAlign: 'center'}}>X</Text>
+              <Text style={{textAlign: 'center'}}>x</Text>
             </TouchableOpacity>
             <CalendarPicker
               onDateChange={date => {
                 setDate(new Date(date));
               }}
-              scaleFactor={400}
+              // scaleFactor={400}
               minDate={minDate}
               selectedDayColor="#e1f0ff"
               selectedDayTextColor="#004b96"
@@ -99,6 +99,7 @@ export default function ScheduleModal(props) {
                     id={d.id}
                     selected={d.selected}
                     onTimeChange={onTimeChange}
+                    disabled={d.disabled}
                   />
                 ))}
               </View>
