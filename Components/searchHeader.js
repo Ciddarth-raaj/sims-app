@@ -26,8 +26,9 @@ export default function SearchHeader(props) {
         </TouchableOpacity>
         <TextInput
           placeholder="Search By Doctor Name or Speciality"
+          placeholderTextColor={'#999999'}
           style={styles.searchBox}
-          onChangeText={(text) => onSearch(text)}
+          onChangeText={text => onSearch(text)}
         />
       </View>
     </View>
