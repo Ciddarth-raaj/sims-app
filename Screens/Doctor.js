@@ -34,7 +34,7 @@ export default class Doctor extends React.Component {
   }
 
   componentDidMount() {
-    this.getDoctor(this.props.route.params.id);
+    // this.getDoctor(this.props.route.params.id);
   }
 
   formatData(res) {

@@ -38,7 +38,6 @@ export default class Reschedule extends React.Component {
 
   openModal() {
     this.setState({isVisible: true});
-    console.log('test');
   }
 
   render() {
