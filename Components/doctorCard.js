@@ -1,0 +1,86 @@
+import React from 'react';
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {useState} from 'react';
+
+import {numberFormat} from '../Util/numberFormat';
+
+export default function DoctorCard(props) {
+  const {
+    id,
+    name,
+    qualification,
+    specialization,
+    experience,
+    languages,
+    fees,
+    navigation,
+  } = props;
+
+  return (
+    <View>
+      <View style={styles.container}>
+        <View style={{justifyContent: 'center'}}>
+          <Image
+            source={require('../assets/happydoctor.jpg')}
+            style={{width: 80, height: 80, borderRadius: 50}}
+          />
+        </View>
+        <View
+          style={{
+            marginLeft: 30,
+            marginRight: 10,
+            flexShrink: 1,
+          }}>
+          <Text
+            style={[
+              styles.containerText,
+              {fontWeight: '700'},
+            ]}>{`Dr ${name}`}</Text>
+          <Text
+            style={[
+              styles.containerText,
+              {color: '#0080ff'},
+            ]}>{`${specialization} | ${experience} Years`}</Text>
+          <Text style={styles.containerText}>{qualification}</Text>
+          <Text style={styles.containerText}>{languages}</Text>
+          <Text style={[styles.containerText, {color: '#0080ff'}]}>
+            <Text style={{color: 'black'}}>Consultation Fees : </Text>
+            {numberFormat(fees)}
+          </Text>
+        </View>
+      </View>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => navigation.navigate('Doctor', {id, id})}>
+        <Text style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
+          BOOK APPOINTMENT
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const color = '#0080ff';
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+    //backgroundColor: 'white',
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
+  containerText: {
+    textAlign: 'left',
+    marginBottom: 5,
+  },
+  buttonStyle: {
+    backgroundColor: '#0080ff',
+    justifyContent: 'center',
+    height: 50,
+    // borderBottomRightRadius: 10,
+    // borderBottomLeftRadius: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+});
