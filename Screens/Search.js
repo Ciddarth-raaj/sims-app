@@ -127,8 +127,6 @@ export default class Search extends React.Component {
         }
       }
 
-      console.log(newSpecList);
-
       this.setState({sortedDocList: newDocList, sortedSpecList: newSpecList});
     } else if (str.length == 0) {
       this.setState({sortedDocList: [], sortedSpecList: []});
