@@ -28,6 +28,11 @@ export default class Login extends React.Component {
       return;
     }
 
+    if (phone.length != 10 || isNaN(phone)) {
+      alert('Invalid Phone Number!');
+      return;
+    }
+
     UserHelper.login(phone, password)
       .then(data => {
         if (data.code == 200) {
@@ -60,7 +65,7 @@ export default class Login extends React.Component {
                 fontWeight: 'bold',
                 fontSize: 32,
               }}>
-              Login
+              LOGIN
             </Text>
             <TextInput
               value={phone}
@@ -68,6 +73,7 @@ export default class Login extends React.Component {
               placeholderTextColor="#879099"
               onChangeText={v => this.setState({phone: v})}
               style={styles.textInputStyle}
+              keyboardType={'phone-pad'}
             />
             <TextInput
               value={password}
