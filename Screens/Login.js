@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import UserHelper from '../helper/user';
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +28,21 @@ export default class Login extends React.Component {
       return;
     }
 
-    alert('Logged In');
+    UserHelper.login(phone, password)
+      .then(data => {
+        if (data.code == 200) {
+          alert(`Logged In!\nUser ID : ${data.data.user_id}`);
+          this.props.navigation.navigate('Home');
+        } else if (data.code == 404) {
+          alert('Incorrect Phone Number / Password');
+        } else {
+          throw 'err';
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('Error logging in!');
+      });
   }
 
   render() {
@@ -59,6 +75,7 @@ export default class Login extends React.Component {
               placeholderTextColor="#879099"
               onChangeText={v => this.setState({password: v})}
               style={styles.textInputStyle}
+              secureTextEntry={true}
             />
 
             <TouchableOpacity

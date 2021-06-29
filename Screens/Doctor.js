@@ -13,7 +13,7 @@ import {
 import {numberFormat} from '../Util/numberFormat';
 import ScheduleModal from '../Components/scheduleModal';
 
-import API from '../api';
+import API from '../Util/api';
 
 export default class Doctor extends React.Component {
   constructor(props) {

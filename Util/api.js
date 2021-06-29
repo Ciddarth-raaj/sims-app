@@ -1,13 +1,12 @@
-import constants from './constants/api';
+import constants from '../constants/api';
 import axios from 'axios';
 
 export default axios.create({
   baseURL: constants.BASE_URL,
   transformResponse: [
-    (res) => {
+    res => {
       try {
         const response = JSON.parse(res);
-
         return response;
       } catch (err) {
         console.log(err);

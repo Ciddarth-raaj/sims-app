@@ -4,7 +4,7 @@ import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import SearchHeader from '../Components/searchHeader';
 import DoctorCard from '../Components/doctorCard';
 import DiseaseCard from '../Components/diseaseCard';
-import API from '../api';
+import API from '../Util/api';
 
 export default class Search extends React.Component {
   constructor(props) {

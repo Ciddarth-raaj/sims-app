@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import DoctorCard from '../Components/doctorCard';
-import API from '../api';
+import API from '../Util/api';
 
 export default class DoctorList extends React.Component {
   constructor(props) {
