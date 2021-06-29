@@ -10,6 +10,7 @@ import DoctorList from './Screens/DoctorList';
 import Reschedule from './Screens/Reschedule';
 import Cancel from './Screens/Cancel';
 import Success from './Screens/Success';
+import Login from './Screens/Login';
 
 const Stack = createStackNavigator();
 console.disableYellowBox = true;
@@ -19,6 +20,11 @@ function App() {
     <NavigationContainer>
       {/* <StatusBar backgroundColor="#e39300" /> */}
       <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Home"
           component={Home}
