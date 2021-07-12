@@ -36,7 +36,7 @@ export default class Login extends React.Component {
     UserHelper.login(phone, password)
       .then(data => {
         if (data.code == 200) {
-          alert(`Logged In!\nUser ID : ${data.data.user_id}`);
+          // alert(`Logged In!\nUser ID : ${data.user_id}`);
           this.props.navigation.navigate('Home');
         } else if (data.code == 404) {
           alert('Incorrect Phone Number / Password');
