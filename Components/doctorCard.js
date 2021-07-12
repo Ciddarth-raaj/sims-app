@@ -17,7 +17,7 @@ export default function DoctorCard(props) {
   } = props;
 
   return (
-    <View>
+    <View style={{marginBottom: 20}}>
       <View style={styles.container}>
         <View style={{justifyContent: 'center'}}>
           <Image
@@ -28,8 +28,9 @@ export default function DoctorCard(props) {
         <View
           style={{
             marginLeft: 30,
-            marginRight: 10,
-            flexShrink: 1,
+            // marginRight: 10,
+            // flexShrink: 1,
+            alignSelf: 'center',
           }}>
           <Text
             style={[
@@ -40,9 +41,15 @@ export default function DoctorCard(props) {
             style={[
               styles.containerText,
               {color: '#0080ff'},
-            ]}>{`${specialization} | ${experience} Years`}</Text>
-          <Text style={styles.containerText}>{qualification}</Text>
-          <Text style={styles.containerText}>{languages}</Text>
+            ]}>{`${specialization} ${
+            experience != undefined ? `| ${experience} Years` : ''
+          }`}</Text>
+          {qualification != undefined && (
+            <Text style={styles.containerText}>{qualification}</Text>
+          )}
+          {languages != undefined && (
+            <Text style={styles.containerText}>{languages}</Text>
+          )}
           <Text style={[styles.containerText, {color: '#0080ff'}]}>
             <Text style={{color: 'black'}}>Consultation Fees : </Text>
             {numberFormat(fees)}

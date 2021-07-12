@@ -6,6 +6,7 @@ import DoctorCard from '../Components/doctorCard';
 import DiseaseCard from '../Components/diseaseCard';
 import API from '../Util/api';
 
+import DoctorHelper from '../helper/doctor';
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -75,7 +76,7 @@ export default class Search extends React.Component {
 
   componentDidMount() {
     // this.getSpecializations();
-    // this.getDoctors();
+    this.getDoctors();
   }
 
   getSpecializations() {
@@ -93,17 +94,14 @@ export default class Search extends React.Component {
   }
 
   getDoctors() {
-    let formData = new FormData();
-    formData.append('secret', 'TestCode');
-
-    API.post('Doctor/getAll.php', formData)
-      .then(res => {
-        this.setState({docList: res.data.data});
+    DoctorHelper.get()
+      .then(data => {
+        this.setState({docList: data});
       })
       .catch(err => {
-        alert(err);
-      })
-      .finally(() => this.setState({loading: false}));
+        console.log(err);
+        alert('Error Getting Doctor Details!');
+      });
   }
 
   handleSearch(str) {
@@ -160,12 +158,13 @@ export default class Search extends React.Component {
               )}
 
               <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
-              {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
+              {/* {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => ( */}
+              {docList.map(d => (
                 <DoctorCard
                   id={d.id}
-                  name={d.name}
+                  name={d.doctor_name}
                   qualification={d.qualification}
-                  specialization={d.specialization}
+                  specialization={d.specialisation}
                   experience={d.experience}
                   languages={d.languages}
                   fees={d.fees}
