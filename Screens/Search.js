@@ -12,32 +12,7 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      docList: [
-        {
-          id: 1,
-          name: 'Ravi',
-          qualification: 'MBBS',
-          specialization: 'Surgery',
-          experience: '4',
-          email: 'ABC@sims.com',
-          phone: '123456789',
-          languages: 'ENG,TAMIL',
-          fees: '249',
-          picture: 'xxxxx',
-        },
-        {
-          id: 2,
-          name: 'Leela',
-          qualification: 'MBBS',
-          specialization: 'Paediatrics',
-          experience: '4',
-          email: 'ABC@sims.com',
-          phone: '123456789',
-          languages: 'ENG,TAMIL',
-          fees: '549',
-          picture: 'xxxxx',
-        },
-      ],
+      docList: [],
       specList: [],
       sortedDocList: [],
       sortedSpecList: [],
@@ -74,13 +49,14 @@ export default class Search extends React.Component {
 
   handleSearch(str) {
     const {docList, specList} = this.state;
+    str = str.toLowerCase();
     if (str.length > 2) {
       const newDocList = [];
       for (let d of docList) {
         if (
-          d.name.includes(str) ||
-          d.qualification.includes(str) ||
-          d.specialization.includes(str)
+          d.doctor_name?.toLowerCase().includes(str) ||
+          d.qualification?.toLowerCase().includes(str) ||
+          d.specialisation?.toLowerCase().includes(str)
         ) {
           newDocList.push(d);
         }
@@ -88,7 +64,10 @@ export default class Search extends React.Component {
 
       const newSpecList = [];
       for (let d of specList) {
-        if (d.name.includes(str) || d.subtitle.includes(str)) {
+        if (
+          d.label?.toLowerCase().includes(str) ||
+          d.subtext?.toLowerCase().includes(str)
+        ) {
           newSpecList.push(d);
         }
       }
@@ -113,18 +92,17 @@ export default class Search extends React.Component {
           <ScrollView style={{height: '100%', padding: 10}}>
             <View style={{paddingBottom: 120}}>
               <Text style={styles.titleText}>Specialisations</Text>
-              {(sortedSpecList.length > 0
-                ? sortedSpecList
-                : specList.splice(0, 5)
-              ).map(s => (
-                <DiseaseCard
-                  id={s.id}
-                  name={s.label}
-                  subtitle={s.sub}
-                  image={s.image}
-                  navigation={this.props.navigation}
-                />
-              ))}
+              {(sortedSpecList.length > 0 ? sortedSpecList : specList).map(
+                s => (
+                  <DiseaseCard
+                    id={s.id}
+                    name={s.label}
+                    subtitle={s.sub}
+                    image={s.image}
+                    navigation={this.props.navigation}
+                  />
+                ),
+              )}
 
               <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
               {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
