@@ -7,6 +7,7 @@ import DiseaseCard from '../Components/diseaseCard';
 import API from '../Util/api';
 
 import DoctorHelper from '../helper/doctor';
+import SpecialisationHelper from '../helper/specialisation';
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -37,60 +38,27 @@ export default class Search extends React.Component {
           picture: 'xxxxx',
         },
       ],
-      specList: [
-        {
-          id: 1,
-          name: 'General Physician',
-          subtitle: 'Managing acute medical conditions',
-          image: require('../assets/medical-doctor-specialist.png'),
-        },
-        {
-          id: 2,
-          name: 'Covid Consultation',
-          subtitle: 'For common health concerns',
-          image: require('../assets/cells-in-a-circle.png'),
-        },
-        {
-          id: 3,
-          name: 'Paediatrics',
-          subtitle: 'Specialists to care and treat children',
-          image: require('../assets/baby-face.png'),
-        },
-        {
-          id: 4,
-          name: 'Cardiology',
-          subtitle: 'For heart and blood pressure problems',
-          image: require('../assets/sthethoscope.png'),
-        },
-        {
-          id: 5,
-          name: 'Dermatology',
-          subtitle: 'Specialists for skin an hair treatment',
-          image: require('../assets/sthethoscope.png'),
-        },
-      ],
+      specList: [],
       sortedDocList: [],
       sortedSpecList: [],
     };
   }
 
   componentDidMount() {
-    // this.getSpecializations();
+    this.getSpecializations();
     this.getDoctors();
   }
 
   getSpecializations() {
-    let formData = new FormData();
-    formData.append('secret', 'TestCode');
-
-    API.post('Specialization/getAll.php', formData)
-      .then(res => {
-        this.setState({specList: res.data.data});
+    SpecialisationHelper.get()
+      .then(data => {
+        console.log(data);
+        this.setState({specList: data});
       })
-      .catch(err => {
-        alert(err);
-      })
-      .finally(() => this.setState({loading: false}));
+      .then(data => {
+        console.log(err);
+        alert('Error Getting Specialisations');
+      });
   }
 
   getDoctors() {
@@ -145,21 +113,21 @@ export default class Search extends React.Component {
           <ScrollView style={{height: '100%', padding: 10}}>
             <View style={{paddingBottom: 120}}>
               <Text style={styles.titleText}>Specialisations</Text>
-              {(sortedSpecList.length > 0 ? sortedSpecList : specList).map(
-                s => (
-                  <DiseaseCard
-                    id={s.id}
-                    name={s.name}
-                    subtitle={s.subtitle}
-                    image={s.image}
-                    navigation={this.props.navigation}
-                  />
-                ),
-              )}
+              {(sortedSpecList.length > 0
+                ? sortedSpecList
+                : specList.splice(0, 5)
+              ).map(s => (
+                <DiseaseCard
+                  id={s.id}
+                  name={s.label}
+                  subtitle={s.sub}
+                  image={s.image}
+                  navigation={this.props.navigation}
+                />
+              ))}
 
               <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
-              {/* {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => ( */}
-              {docList.map(d => (
+              {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
                 <DoctorCard
                   id={d.id}
                   name={d.doctor_name}
