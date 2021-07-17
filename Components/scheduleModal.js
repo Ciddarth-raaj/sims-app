@@ -15,9 +15,11 @@ import {numberFormat} from '../Util/numberFormat';
 import TimeCard from './timeCard';
 
 import OrdersHelper from '../helper/orders';
+import PatientsHelper from '../helper/patients';
 
 export default function ScheduleModal(props) {
   let order_id = undefined;
+  let patientDetails = undefined;
   const {isVisible, fee, close, navigation} = props;
   const [date, setDate] = React.useState(new Date());
   const minDate = new Date();
@@ -64,35 +66,51 @@ export default function ScheduleModal(props) {
     }
   };
 
-  const openPayment = order_id => {
-    var options = {
-      description: 'Online Consultation',
-      // image: 'https://i.imgur.com/3g7nmJC.png',
-      currency: 'INR',
-      key: 'rzp_test_pMZx2ECklysZXf',
-      amount: fee,
-      name: 'SIMS Hospital',
-      order_id: order_id,
-      prefill: {
-        email: 'example@example.com',
-        contact: '9003945219',
-        name: 'Ciddarth Raaj',
-      },
-      theme: {color: '#0088ff'},
-    };
+  const openPayment = async order_id => {
+    try {
+      patientDetails = patientDetails || (await getPatientsDetails());
+      const options = {
+        description: 'Online Consultation',
+        // image: 'https://i.imgur.com/3g7nmJC.png',
+        currency: 'INR',
+        key: 'rzp_test_pMZx2ECklysZXf',
+        amount: fee,
+        name: 'SIMS Hospital',
+        order_id: order_id,
+        theme: {color: '#0088ff'},
+      };
 
-    RazorpayCheckout.open(options)
-      .then(data => {
-        console.log(data);
-        close();
-        navigation.navigate('Success');
-      })
-      .catch(error => {
-        if (error.code != 2) {
-          alert('An error occured during payment.\nPlease try again later!');
-        }
-      });
+      if (patientDetails.code == 200) {
+        options.prefill = {
+          email: patientDetails.email,
+          contact: patientDetails.phone,
+          name: patientDetails.name,
+        };
+      }
+
+      RazorpayCheckout.open(options)
+        .then(data => {
+          console.log(data);
+          close();
+          navigation.navigate('Success');
+        })
+        .catch(error => {
+          throw {code: error.code, error: error};
+        });
+    } catch (err) {
+      console.log(err);
+      if (err.code == undefined || err.code != 2) {
+        alert('An error occured during payment.\nPlease try again later!');
+      }
+    }
   };
+
+  const getPatientsDetails = async () =>
+    new Promise((resolve, reject) => {
+      PatientsHelper.getDetails()
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
 
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>

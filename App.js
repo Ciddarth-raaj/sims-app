@@ -12,6 +12,8 @@ import Cancel from './Screens/Cancel';
 import Success from './Screens/Success';
 import Login from './Screens/Login';
 
+import './constants/variables';
+
 const Stack = createStackNavigator();
 console.disableYellowBox = true;
 
