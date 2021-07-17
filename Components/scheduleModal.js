@@ -7,14 +7,17 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+
 import CalendarPicker from 'react-native-calendar-picker';
 import RazorpayCheckout from 'react-native-razorpay';
-
-import {moment} from 'moment';
-import TimeCard from './timeCard';
 import {numberFormat} from '../Util/numberFormat';
 
+import TimeCard from './timeCard';
+
+import OrdersHelper from '../helper/orders';
+
 export default function ScheduleModal(props) {
+  let order_id = undefined;
   const {isVisible, fee, close, navigation} = props;
   const [date, setDate] = React.useState(new Date());
   const minDate = new Date();
@@ -38,29 +41,53 @@ export default function ScheduleModal(props) {
     setAvailableDates(newAvailableDates);
   };
 
-  const continuePayment = () => {
+  const createRazorpay = () => {
+    if (order_id == undefined) {
+      OrdersHelper.createRazorpay({
+        amount: fee * 100,
+        receipt: 1,
+      })
+        .then(data => {
+          if ((data.status = 'status')) {
+            order_id = data.id;
+            openPayment(data.id);
+          } else {
+            throw 'err';
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          alert('An error occured during payment.\nPlease try again later!');
+        });
+    } else {
+      openPayment(order_id);
+    }
+  };
+
+  const openPayment = order_id => {
     var options = {
       description: 'Online Consultation',
-      image: 'https://i.imgur.com/3g7nmJC.png',
+      // image: 'https://i.imgur.com/3g7nmJC.png',
       currency: 'INR',
-      key: 'rzp_live_aC9sMv30AImrzu',
+      key: 'rzp_test_pMZx2ECklysZXf',
       amount: fee,
       name: 'SIMS Hospital',
-      order_id: 'order_HZv3MwJgKqK23n',
+      order_id: order_id,
       prefill: {
         email: 'example@example.com',
-        contact: '9191919191',
-        name: 'Example Name',
+        contact: '9003945219',
+        name: 'Ciddarth Raaj',
       },
       theme: {color: '#0088ff'},
     };
 
     RazorpayCheckout.open(options)
       .then(data => {
-        alert(`Success: ${data.razorpay_payment_id}`);
+        console.log(data);
+        close();
+        navigation.navigate('Success');
       })
       .catch(error => {
-        // alert(`Error: ${error.code} | ${error.description}`);
         if (error.code != 2) {
           alert('An error occured during payment.\nPlease try again later!');
         }
@@ -146,7 +173,7 @@ export default function ScheduleModal(props) {
               }}
               onPress={() => {
                 // close();
-                continuePayment();
+                createRazorpay();
                 // navigation.navigate('Success');
               }}>
               <Text
