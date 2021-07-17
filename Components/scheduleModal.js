@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
+import RazorpayCheckout from 'react-native-razorpay';
 
 import {moment} from 'moment';
 import TimeCard from './timeCard';
@@ -35,6 +36,35 @@ export default function ScheduleModal(props) {
     });
 
     setAvailableDates(newAvailableDates);
+  };
+
+  const continuePayment = () => {
+    var options = {
+      description: 'Online Consultation',
+      image: 'https://i.imgur.com/3g7nmJC.png',
+      currency: 'INR',
+      key: 'rzp_live_aC9sMv30AImrzu',
+      amount: fee,
+      name: 'SIMS Hospital',
+      order_id: 'order_HZv3MwJgKqK23n',
+      prefill: {
+        email: 'example@example.com',
+        contact: '9191919191',
+        name: 'Example Name',
+      },
+      theme: {color: '#0088ff'},
+    };
+
+    RazorpayCheckout.open(options)
+      .then(data => {
+        alert(`Success: ${data.razorpay_payment_id}`);
+      })
+      .catch(error => {
+        // alert(`Error: ${error.code} | ${error.description}`);
+        if (error.code != 2) {
+          alert('An error occured during payment.\nPlease try again later!');
+        }
+      });
   };
 
   return (
@@ -115,8 +145,9 @@ export default function ScheduleModal(props) {
                 borderRadius: 10,
               }}
               onPress={() => {
-                close();
-                navigation.navigate('Success');
+                // close();
+                continuePayment();
+                // navigation.navigate('Success');
               }}>
               <Text
                 style={{
