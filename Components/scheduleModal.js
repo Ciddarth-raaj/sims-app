@@ -66,6 +66,22 @@ export default function ScheduleModal(props) {
     }
   };
 
+  const createOrder = mobile => {
+    OrdersHelper.create({
+      mobile,
+    })
+      .then(data => {
+        if ((data.code = '200')) {
+          navigation.navigate('Success');
+        } else {
+          throw 'err';
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const openPayment = async order_id => {
     try {
       patientDetails = patientDetails || (await getPatientsDetails());
@@ -92,7 +108,7 @@ export default function ScheduleModal(props) {
         .then(data => {
           console.log(data);
           close();
-          navigation.navigate('Success');
+          createOrder(patientDetails.phone);
         })
         .catch(error => {
           throw {code: error.code, error: error};
