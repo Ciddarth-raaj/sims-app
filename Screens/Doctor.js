@@ -13,7 +13,7 @@ import {
 import {numberFormat} from '../Util/numberFormat';
 import ScheduleModal from '../Components/scheduleModal';
 
-import API from '../Util/api';
+import DoctorHelper from '../helper/doctor';
 
 export default class Doctor extends React.Component {
   constructor(props) {
@@ -34,36 +34,32 @@ export default class Doctor extends React.Component {
   }
 
   componentDidMount() {
-    // this.getDoctor(this.props.route.params.id);
+    this.getDoctor(this.props.route.params.id);
   }
 
   formatData(res) {
     this.setState({
-      name: res.name,
+      name: res.doctor_name,
       qualification: res.qualification,
-      specialization: res.specialization,
+      specialization: res.specialisation,
       experience: res.experience,
       email: res.email,
       phone: res.phone,
       languages: res.languages,
-      fees: res.fees,
-      picture: res.picture,
+      fees: res.fees ?? 200,
+      picture: res.image,
     });
   }
 
   getDoctor(id) {
-    let formData = new FormData();
-    formData.append('secret', 'TestCode');
-    formData.append('id', id);
-
-    API.post('Doctor/getId.php', formData)
-      .then(res => {
-        this.formatData(res.data.data[0]);
+    DoctorHelper.getById(id)
+      .then(data => {
+        this.formatData(data);
       })
       .catch(err => {
-        alert(err);
-      })
-      .finally(() => this.setState({loading: false}));
+        console.error(err);
+        alert('Error getting details!');
+      });
   }
 
   render() {

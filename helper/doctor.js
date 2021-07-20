@@ -16,6 +16,24 @@ const doctor = {
           reject(err);
         });
     }),
+  getById: doctor_id =>
+    new Promise(function (resolve, reject) {
+      API.get('doctor/id?doctor_id=' + doctor_id)
+        .then(async res => {
+          if (res.status === 200) {
+            if (res.data.code == 200) {
+              resolve(res.data);
+            } else {
+              alert('Doctor not found!');
+            }
+          } else {
+            reject(res);
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }),
   format: data => {
     const formatted = [];
 
