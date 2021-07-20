@@ -115,7 +115,9 @@ export default class Doctor extends React.Component {
               style={{
                 fontSize: 17,
                 color: '#004b96',
-              }}>{`${specialization} | ${experience} Years`}</Text>
+              }}>{`${specialization} ${
+              experience ? `| ${experience} Years` : ''
+            }`}</Text>
 
             <Text style={{marginTop: 10}}>{qualification}</Text>
 
