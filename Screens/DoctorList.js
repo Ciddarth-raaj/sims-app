@@ -10,45 +10,30 @@ import {
 } from 'react-native';
 
 import DoctorCard from '../Components/doctorCard';
-import API from '../Util/api';
+
+import DoctorHelper from '../helper/doctor';
 
 export default class DoctorList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      docList: [
-        {
-          name: 'ABC',
-          qualification: 'MBBS',
-          specialization: 'Surgery',
-          experience: '4',
-          email: 'ABC@sims.com',
-          phone: '123456789',
-          languages: 'ENG,TAMIL',
-          fees: '249',
-          picture: 'xxxxx',
-        },
-      ],
+      docList: [],
     };
   }
 
   componentDidMount() {
-    // this.getDoctors(this.props.route.params.id);
+    this.getDoctors(this.props.route.params.id);
   }
 
   getDoctors(id) {
-    let formData = new FormData();
-    formData.append('secret', 'TestCode');
-    formData.append('specialization', id);
-
-    API.post('Doctor/getAll.php', formData)
-      .then(res => {
-        this.setState({docList: res.data.data});
+    DoctorHelper.get({specialisations: [id]})
+      .then(data => {
+        this.setState({docList: data});
       })
       .catch(err => {
-        alert(err);
-      })
-      .finally(() => this.setState({loading: false}));
+        console.log(err);
+        alert('Error getting details');
+      });
   }
 
   render() {
@@ -79,10 +64,10 @@ export default class DoctorList extends React.Component {
               </View>
               {docList.map(d => (
                 <DoctorCard
-                  id={d.id}
-                  name={d.name}
+                  id={d.doctor_id}
+                  name={d.doctor_name}
                   qualification={d.qualification}
-                  specialization={d.specialization}
+                  specialization={d.specialisation}
                   experience={d.experience}
                   languages={d.languages}
                   fees={d.fees}

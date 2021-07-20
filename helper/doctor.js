@@ -1,9 +1,10 @@
 import API from '../Util/api';
 
 const doctor = {
-  get: () =>
+  get: filter =>
     new Promise(function (resolve, reject) {
-      API.get('doctor')
+      const filterUrl = doctor.getFilterUrl(filter);
+      API.get('doctor?' + filterUrl)
         .then(async res => {
           if (res.status === 200) {
             resolve(doctor.format(res.data.doctors));
@@ -37,6 +38,24 @@ const doctor = {
     }
 
     return formatted;
+  },
+  getFilterUrl: filter => {
+    if (filter == undefined) {
+      return '';
+    }
+
+    let filterUrl = '';
+
+    if (
+      filter.specialisations !== undefined &&
+      filter.specialisations.length > 0
+    ) {
+      filter.specialisations.forEach(
+        (b, i) => (filterUrl += '&specialisations[' + i + ']=' + b),
+      );
+    }
+
+    return filterUrl;
   },
 };
 

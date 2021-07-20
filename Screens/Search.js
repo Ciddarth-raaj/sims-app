@@ -95,7 +95,7 @@ export default class Search extends React.Component {
               {(sortedSpecList.length > 0 ? sortedSpecList : specList).map(
                 s => (
                   <DiseaseCard
-                    id={s.id}
+                    id={s.specialisation_id}
                     name={s.label}
                     subtitle={s.sub}
                     image={s.image}
