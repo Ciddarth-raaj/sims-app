@@ -60,7 +60,7 @@ export default class Reschedule extends React.Component {
                   marginTop: 10,
                   marginBottom: 10,
                 }}>
-                Appointments
+                Reschedule Appointment
               </Text>
             </View>
             {appointments.map(a => (
