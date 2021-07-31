@@ -1,3 +1,4 @@
+import moment from 'moment';
 import API from '../Util/api';
 
 const appointment = {
@@ -19,47 +20,42 @@ const appointment = {
           reject(err);
         });
     }),
-  // getById: doctor_id =>
-  //   new Promise(function (resolve, reject) {
-  //     API.get('doctor/id?doctor_id=' + doctor_id)
-  //       .then(async res => {
-  //         if (res.status === 200) {
-  //           if (res.data.code == 200) {
-  //             resolve(res.data);
-  //           } else {
-  //             alert('Doctor not found!');
-  //           }
-  //         } else {
-  //           reject(res);
-  //         }
-  //       })
-  //       .catch(err => {
-  //         reject(err);
-  //       });
-  //   }),
-  // format: data => {
-  //   const formatted = [];
+  get: () =>
+    new Promise(function (resolve, reject) {
+      API.get('appointment', {
+        headers: {
+          'x-access-token': global.config.accessToken,
+        },
+      })
+        .then(async res => {
+          if (res.status === 200) {
+            resolve(appointment.format(res.data));
+          } else {
+            reject(res);
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }),
+  format: data => {
+    const formatted = [];
 
-  //   for (const d of data) {
-  //     formatted.push({
-  //       doctor_id: d.doctor_id,
-  //       doctor_name: d.doctor_name,
-  //       specialisation: d.specialisation,
-  //       experience: d.experience,
-  //       image: d.image,
-  //       email_id: d.email_id,
-  //       phone: d.phone,
-  //       qualification: d.qualification,
-  //       languages: d.languages,
-  //       fees: d.fees || 200,
-  //       is_active: d.is_active,
-  //       // created_at: '2021-07-06T06:55:14.000Z',
-  //       // updated_at: '2021-07-06T06:55:36.000Z',
-  //     });
-  //   }
+    for (const d of data) {
+      formatted.push({
+        appointment_id: d.appointment_id,
+        doctor_id: d.doctor_id,
+        doctor_name: d.doctor_name,
+        image: d.image,
+        status: d.status,
+        status_id: d.status_id,
+        timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
+        // created_at: moment(),
+      });
+    }
 
-  //   return formatted;
-  // },
+    return formatted;
+  },
   // getFilterUrl: filter => {
   //   if (filter == undefined) {
   //     return '';

@@ -12,28 +12,24 @@ import {
 
 import AppointmentCard from '../Components/appointmentCard';
 
+import AppointmentHelper from '../helper/appointment';
+
 export default class Reschedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      appointments: [
-        {
-          id: 1,
-          name: 'Ravi',
-          timeSlot: '9:30, Fri 20th Jan',
-        },
-        {
-          id: 2,
-          name: 'Kumanran',
-          timeSlot: '4:30, Mon 23th Jan',
-        },
-        {
-          id: 3,
-          name: 'Vivek Chandran',
-          timeSlot: '10:30, Fri 27th Jan',
-        },
-      ],
+      appointments: [],
     };
+  }
+
+  componentDidMount() {
+    this.getAppointments();
+  }
+
+  getAppointments() {
+    AppointmentHelper.get()
+      .then(data => this.setState({appointments: data}))
+      .catch(err => console.log(err));
   }
 
   openModal() {
@@ -64,14 +60,14 @@ export default class Reschedule extends React.Component {
                   marginTop: 10,
                   marginBottom: 10,
                 }}>
-                Reschedule Appointment
+                Appointments
               </Text>
             </View>
             {appointments.map(a => (
               <AppointmentCard
-                id={a.id}
-                name={a.name}
-                timeSlot={a.timeSlot}
+                id={a.appointment_id}
+                name={a.doctor_name}
+                timeSlot={a.timeslot}
                 navigation={this.props.navigation}
               />
             ))}
