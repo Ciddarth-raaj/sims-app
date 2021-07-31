@@ -67,6 +67,7 @@ export default class Reschedule extends React.Component {
               <AppointmentCard
                 id={a.appointment_id}
                 name={a.doctor_name}
+                status={a.status}
                 timeSlot={a.timeslot}
                 navigation={this.props.navigation}
                 getAppointments={() => this.getAppointments()}

@@ -12,7 +12,8 @@ import AppointmentHelper from '../helper/appointment';
 import RescheduleModal from './rescheduleModal';
 
 export default function AppointmentCard(props) {
-  const {id, name, timeSlot, cancel, navigation, getAppointments} = props;
+  const {id, name, timeSlot, cancel, navigation, getAppointments, status} =
+    props;
   const [isVisible, setVisible] = React.useState(false);
 
   const cancelAppointment = () => {
@@ -71,10 +72,15 @@ export default function AppointmentCard(props) {
               {fontWeight: '700'},
             ]}>{`Dr ${name}`}</Text>
           <Text style={{fontWeight: 'bold', color: '#0080ff', marginTop: 10}}>
-            Time :{' '}
+            {'Time : '}
             <Text style={{fontWeight: 'normal', color: 'black'}}>
               {timeSlot}
-            </Text>{' '}
+            </Text>
+          </Text>
+
+          <Text style={{fontWeight: 'bold', color: '#0080ff', marginTop: 10}}>
+            {'Status : '}
+            <Text style={{fontWeight: 'normal', color: 'black'}}>{status}</Text>
           </Text>
         </View>
       </View>
