@@ -69,6 +69,7 @@ export default class Reschedule extends React.Component {
                 name={a.doctor_name}
                 timeSlot={a.timeslot}
                 navigation={this.props.navigation}
+                getAppointments={() => this.getAppointments()}
               />
             ))}
           </ScrollView>

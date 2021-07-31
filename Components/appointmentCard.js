@@ -8,10 +8,11 @@ import {
   Alert,
 } from 'react-native';
 
+import AppointmentHelper from '../helper/appointment';
 import RescheduleModal from './rescheduleModal';
 
 export default function AppointmentCard(props) {
-  const {id, name, timeSlot, cancel, navigation} = props;
+  const {id, name, timeSlot, cancel, navigation, getAppointments} = props;
   const [isVisible, setVisible] = React.useState(false);
 
   const cancelAppointment = () => {
@@ -26,9 +27,27 @@ export default function AppointmentCard(props) {
         {
           text: 'Yes',
           style: 'default',
+          onPress: () => cancelCall(),
         },
       ],
     );
+  };
+
+  const cancelCall = () => {
+    const data = {appointment_id: id, appointment_status: 5};
+    AppointmentHelper.update(data)
+      .then(data => {
+        if (data.code == 200) {
+          getAppointments();
+          alert('Appointment Cancelled');
+        } else {
+          throw 'error';
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('Error cancelling appointment! Try again later!');
+      });
   };
 
   return (
