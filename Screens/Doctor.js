@@ -19,6 +19,7 @@ export default class Doctor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      doctor_id: this.props.route.params.id,
       name: 'Ramachandran',
       qualification: 'MBBS',
       specialization: 'Surgery',
@@ -72,12 +73,14 @@ export default class Doctor extends React.Component {
       fees,
       isVisible,
       selectedDate,
+      doctor_id,
     } = this.state;
     return (
       <>
         <SafeAreaView style={{backgroundColor: 'white'}} />
         <SafeAreaView>
           <ScheduleModal
+            doctor_id={doctor_id}
             isVisible={isVisible}
             fee={fees}
             close={() => this.setState({isVisible: false})}

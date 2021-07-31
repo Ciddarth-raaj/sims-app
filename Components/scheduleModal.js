@@ -16,6 +16,8 @@ import TimeCard from './timeCard';
 
 import OrdersHelper from '../helper/orders';
 import PatientsHelper from '../helper/patients';
+import AppointmentHelper from '../helper/appointment';
+import moment from 'moment';
 
 export default function ScheduleModal(props) {
   let order_id = undefined;
@@ -128,6 +130,40 @@ export default function ScheduleModal(props) {
         .catch(err => reject(err));
     });
 
+  const createAppoinment = () => {
+    let selectedDate = undefined;
+
+    for (const i in availableDates) {
+      if (availableDates[i].selected == true) {
+        selectedDate = availableDates[i].time;
+        break;
+      }
+    }
+
+    const data = {
+      timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+      doctor_id: props.doctor_id,
+    };
+
+    console.log(data);
+
+    AppointmentHelper.create(data)
+      .then(data => {
+        console.log(data);
+        if (data.code == 200) {
+          alert('Booked!');
+        } else if (data.code == 201) {
+          alert('Slot not available!');
+        } else {
+          throw 'undefined code';
+        }
+      })
+      .catch(err => {
+        alert('Error booking appointment! Try Again Later!');
+        console.log(err);
+      });
+  };
+
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>
       <View
@@ -207,8 +243,9 @@ export default function ScheduleModal(props) {
               }}
               onPress={() => {
                 // close();
-                createRazorpay();
+                // createRazorpay();
                 // navigation.navigate('Success');
+                createAppoinment();
               }}>
               <Text
                 style={{
