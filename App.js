@@ -20,13 +20,13 @@ console.disableYellowBox = true;
 function App() {
   return (
     <NavigationContainer>
-      {/* <StatusBar backgroundColor="#e39300" /> */}
+      <StatusBar backgroundColor="#017be5" barStyle="dark-content" />
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={Login}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Home"
           component={Home}
