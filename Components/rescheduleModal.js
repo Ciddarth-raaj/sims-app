@@ -22,7 +22,7 @@ export default function ScheduleModal(props) {
   let order_id = undefined;
   let patientDetails = undefined;
 
-  const {isVisible, fee, close, navigation} = props;
+  const {isVisible, fee, close, navigation, getAppointments} = props;
   const [date, setDate] = React.useState(
     new Date(moment(props.timeSlot, 'hh:mm A - ddd - DD,MMM')),
   );
@@ -35,7 +35,7 @@ export default function ScheduleModal(props) {
     {id: 5, time: '12:00', selected: false},
     {id: 6, time: '12:30', selected: false},
     {id: 7, time: '03:00', selected: false},
-    {id: 7, time: '03:30', selected: false},
+    {id: 8, time: '03:30', selected: false},
   ]);
 
   useEffect(() => {
@@ -71,11 +71,13 @@ export default function ScheduleModal(props) {
     const newAvailableDates = availableDates.map(d => {
       if (d.id === id) {
         d.selected = true;
-      } else d.selected = false;
+      } else {
+        d.selected = false;
+      }
       return d;
     });
 
-    setAvailableDates(newAvailableDates);
+    setAvailableDates([...newAvailableDates]);
   };
 
   const updateAppoinment = () => {
@@ -89,15 +91,16 @@ export default function ScheduleModal(props) {
     }
 
     const data = {
+      appointment_id: props.appointment_id,
       timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
-      doctor_id: props.doctor_id,
     };
 
-    AppointmentHelper.create(data)
+    AppointmentHelper.update(data)
       .then(data => {
-        console.log(data);
         if (data.code == 200) {
-          alert('Booked!');
+          getAppointments();
+          alert('Rescheduled!');
+          close();
         } else if (data.code == 201) {
           alert('Slot not available!');
         } else {
@@ -105,7 +108,7 @@ export default function ScheduleModal(props) {
         }
       })
       .catch(err => {
-        alert('Error booking appointment! Try Again Later!');
+        alert('Error rescheduling appointment! Try Again Later!');
         console.log(err);
       });
   };

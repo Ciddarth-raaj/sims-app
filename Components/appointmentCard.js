@@ -67,6 +67,7 @@ export default function AppointmentCard(props) {
         isVisible={isVisible}
         close={() => setVisible(false)}
         navigation={navigation}
+        getAppointments={() => getAppointments()}
       />
       <View style={{flexDirection: 'row'}}>
         <Image
