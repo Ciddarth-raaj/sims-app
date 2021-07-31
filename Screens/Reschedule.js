@@ -60,7 +60,7 @@ export default class Reschedule extends React.Component {
                   marginTop: 10,
                   marginBottom: 10,
                 }}>
-                Appointment
+                Appointments
               </Text>
             </View>
             {appointments.map(a => (
@@ -68,6 +68,7 @@ export default class Reschedule extends React.Component {
                 id={a.appointment_id}
                 name={a.doctor_name}
                 status={a.status}
+                status_id={a.status_id}
                 timeSlot={a.timeslot}
                 navigation={this.props.navigation}
                 getAppointments={() => this.getAppointments()}

@@ -12,8 +12,16 @@ import AppointmentHelper from '../helper/appointment';
 import RescheduleModal from './rescheduleModal';
 
 export default function AppointmentCard(props) {
-  const {id, name, timeSlot, cancel, navigation, getAppointments, status} =
-    props;
+  const {
+    id,
+    name,
+    timeSlot,
+    cancel,
+    navigation,
+    getAppointments,
+    status,
+    status_id,
+  } = props;
   const [isVisible, setVisible] = React.useState(false);
 
   const cancelAppointment = () => {
@@ -85,30 +93,37 @@ export default function AppointmentCard(props) {
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[
-            styles.buttonStyle,
-            {marginRight: 10, borderColor: 'red', borderWidth: 1},
-          ]}
-          onPress={() => cancelAppointment()}>
-          <Text style={{textAlign: 'center', color: 'red', fontWeight: 'bold'}}>
-            CANCEL
-          </Text>
-        </TouchableOpacity>
+      {status_id != 5 && (
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.buttonStyle,
+              {
+                marginRight: 10,
+                borderColor: 'red',
+                borderWidth: 1,
+              },
+            ]}
+            onPress={() => cancelAppointment()}>
+            <Text
+              style={{textAlign: 'center', color: 'red', fontWeight: 'bold'}}>
+              CANCEL
+            </Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[
-            styles.buttonStyle,
-            {backgroundColor: '#0080ff', marginLeft: 10},
-          ]}
-          onPress={() => setVisible(true)}>
-          <Text
-            style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
-            RESCHEDULE
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={[
+              styles.buttonStyle,
+              {backgroundColor: '#0080ff', marginLeft: 10},
+            ]}
+            onPress={() => setVisible(true)}>
+            <Text
+              style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
+              RESCHEDULE
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
