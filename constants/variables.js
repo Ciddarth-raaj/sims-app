@@ -4,4 +4,5 @@ module.exports = global.config = {
   user_role: '',
   user_role_name: '',
   username: '',
+  name: '',
 };

@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import UserHelper from '../helper/user';
 
@@ -18,6 +19,16 @@ export default class Login extends React.Component {
       phone: '',
       password: '',
     };
+  }
+
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('token');
+    const name = await AsyncStorage.getItem('name');
+    if (token != undefined || token != undefined) {
+      global.config.accessToken = token;
+      global.config.name = name;
+      this.props.navigation.navigate('Home');
+    }
   }
 
   login() {
@@ -34,9 +45,12 @@ export default class Login extends React.Component {
     }
 
     UserHelper.login(phone, password)
-      .then(data => {
+      .then(async data => {
         if (data.code == 200) {
-          // alert(`Logged In!\nUser ID : ${data.user_id}`);
+          await AsyncStorage.setItem('token', data.token);
+          await AsyncStorage.setItem('name', data.name);
+          global.config.accessToken = data.token;
+          global.config.name = data.name;
           this.props.navigation.navigate('Home');
         } else if (data.code == 404) {
           alert('Incorrect Phone Number / Password');

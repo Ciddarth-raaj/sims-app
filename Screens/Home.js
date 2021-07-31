@@ -25,7 +25,7 @@ export default class Home extends React.Component {
               <View>
                 <Text
                   style={{fontSize: 25, fontWeight: '700', color: '#0080ff'}}>
-                  Hi Ciddarth ,
+                  {`Hi ${global.config.name} ,`}
                 </Text>
               </View>
               <Text style={{fontSize: 19, fontWeight: '500'}}>
