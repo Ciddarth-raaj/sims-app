@@ -20,6 +20,24 @@ const appointment = {
           reject(err);
         });
     }),
+  update: data =>
+    new Promise(function (resolve, reject) {
+      API.patch('appointment', data, {
+        headers: {
+          'x-access-token': global.config.accessToken,
+        },
+      })
+        .then(async res => {
+          if (res.status === 200) {
+            resolve(res.data);
+          } else {
+            reject(res);
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }),
   get: () =>
     new Promise(function (resolve, reject) {
       API.get('appointment', {

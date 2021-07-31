@@ -8,7 +8,7 @@ import {
   Alert,
 } from 'react-native';
 
-import ScheduleModal from './scheduleModal';
+import RescheduleModal from './rescheduleModal';
 
 export default function AppointmentCard(props) {
   const {id, name, timeSlot, cancel, navigation} = props;
@@ -33,9 +33,10 @@ export default function AppointmentCard(props) {
 
   return (
     <View style={{marginTop: 40}}>
-      <ScheduleModal
+      <RescheduleModal
+        appointment_id={id}
+        timeSlot={timeSlot}
         isVisible={isVisible}
-        fee={100}
         close={() => setVisible(false)}
         navigation={navigation}
       />
