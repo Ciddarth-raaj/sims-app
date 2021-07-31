@@ -6,7 +6,9 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HomeCard from '../Components/homeCard';
 
@@ -15,22 +17,39 @@ export default class Home extends React.Component {
     super(props);
   }
 
+  async logout() {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Login');
+  }
+
   render() {
     return (
       <>
         <SafeAreaView style={{backgroundColor: 'white'}} />
         <SafeAreaView>
           <ScrollView style={{height: '100%', backgroundColor: 'white'}}>
-            <View style={{padding: 10}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: 10,
+              }}>
               <View>
-                <Text
-                  style={{fontSize: 25, fontWeight: '700', color: '#0080ff'}}>
-                  {`Hi ${global.config.name} ,`}
+                <View>
+                  <Text
+                    style={{fontSize: 25, fontWeight: '700', color: '#0080ff'}}>
+                    {`Hi ${global.config.name} ,`}
+                  </Text>
+                </View>
+                <Text style={{fontSize: 19, fontWeight: '500'}}>
+                  How can we help you?
                 </Text>
               </View>
-              <Text style={{fontSize: 19, fontWeight: '500'}}>
-                How can we help you?
-              </Text>
+
+              <TouchableOpacity onPress={() => this.logout()}>
+                <Text>{'Logout'}</Text>
+              </TouchableOpacity>
             </View>
             <View
               style={{
