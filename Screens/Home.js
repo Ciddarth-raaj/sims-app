@@ -44,15 +44,15 @@ export default class Home extends React.Component {
                 pressAction={() => this.props.navigation.navigate('Search')}
               />
               <HomeCard
-                title="Reschedule Apointment"
+                title="Apointments"
                 image={require('../assets/clock.png')}
                 pressAction={() => this.props.navigation.navigate('Reschedule')}
               />
-              <HomeCard
+              {/* <HomeCard
                 title="Cancel Appointment"
                 image={require('../assets/close.png')}
                 pressAction={() => this.props.navigation.navigate('Cancel')}
-              />
+              /> */}
             </View>
 
             <View style={styles.container1}>

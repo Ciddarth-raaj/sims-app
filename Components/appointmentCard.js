@@ -5,12 +5,10 @@ import ScheduleModal from './scheduleModal';
 
 export default function AppointmentCard(props) {
   const {id, name, timeSlot, cancel, navigation} = props;
-  const reschedule = props.cancel == undefined;
-
   const [isVisible, setVisible] = React.useState(false);
 
   return (
-    <View style={{marginTop: 10}}>
+    <View style={{marginTop: 40}}>
       <ScheduleModal
         isVisible={isVisible}
         fee={100}
@@ -36,34 +34,45 @@ export default function AppointmentCard(props) {
           </Text>
         </View>
       </View>
-      {reschedule ? (
+
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.buttonStyle, {backgroundColor: '#0080ff'}]}
+          style={[
+            styles.buttonStyle,
+            {marginRight: 10, borderColor: 'red', borderWidth: 1},
+          ]}
+          onPress={cancel}>
+          <Text style={{textAlign: 'center', color: 'red', fontWeight: 'bold'}}>
+            CANCEL
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            {backgroundColor: '#0080ff', marginLeft: 10},
+          ]}
           onPress={() => setVisible(true)}>
           <Text
             style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
-            RESCHEDULE APPOINTMENT
+            RESCHEDULE
           </Text>
         </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.buttonStyle} onPress={cancel}>
-          <Text
-            style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
-            CANCEL APPOINTMENT
-          </Text>
-        </TouchableOpacity>
-      )}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: 'red',
     justifyContent: 'center',
     height: 40,
     borderRadius: 10,
     marginBottom: 10,
     marginTop: 10,
+    flex: 1,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
   },
 });
