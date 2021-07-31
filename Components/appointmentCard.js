@@ -1,11 +1,35 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, Image, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  View,
+  Alert,
+} from 'react-native';
 
 import ScheduleModal from './scheduleModal';
 
 export default function AppointmentCard(props) {
   const {id, name, timeSlot, cancel, navigation} = props;
   const [isVisible, setVisible] = React.useState(false);
+
+  const cancelAppointment = () => {
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to cancel this appointment?',
+      [
+        {
+          text: 'No',
+          style: 'destructive',
+        },
+        {
+          text: 'Yes',
+          style: 'default',
+        },
+      ],
+    );
+  };
 
   return (
     <View style={{marginTop: 40}}>
@@ -41,7 +65,7 @@ export default function AppointmentCard(props) {
             styles.buttonStyle,
             {marginRight: 10, borderColor: 'red', borderWidth: 1},
           ]}
-          onPress={cancel}>
+          onPress={() => cancelAppointment()}>
           <Text style={{textAlign: 'center', color: 'red', fontWeight: 'bold'}}>
             CANCEL
           </Text>
