@@ -74,6 +74,7 @@ export default function ScheduleModal(props) {
     })
       .then(data => {
         if ((data.code = '200')) {
+          createAppoinment();
           navigation.navigate('Success');
         } else {
           throw 'err';
@@ -108,7 +109,6 @@ export default function ScheduleModal(props) {
 
       RazorpayCheckout.open(options)
         .then(data => {
-          console.log(data);
           close();
           createOrder(patientDetails.phone);
         })
@@ -144,8 +144,6 @@ export default function ScheduleModal(props) {
       timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
       doctor_id: props.doctor_id,
     };
-
-    console.log(data);
 
     AppointmentHelper.create(data)
       .then(data => {
@@ -243,9 +241,8 @@ export default function ScheduleModal(props) {
               }}
               onPress={() => {
                 // close();
-                // createRazorpay();
+                createRazorpay();
                 // navigation.navigate('Success');
-                createAppoinment();
               }}>
               <Text
                 style={{
