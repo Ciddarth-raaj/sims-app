@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -5,11 +6,29 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 export default class Success extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      doctor_name: '',
+      appointment_time: '',
+    };
+  }
+
+  componentDidMount() {
+    const params = this.props.route.params;
+    if (params == undefined) {
+      alert('You are not allowed to view this page');
+      this.props.navigation.navigate('Home');
+    } else {
+      this.setState({
+        doctor_name: params.doctor_name,
+        appointment_time: moment(params.timeslot, 'YYYY-MM-DD hh:mm A').format(
+          'hh:mm A - ddd, DD MMM',
+        ),
+      });
+    }
   }
 
   render() {
-    const {appointments} = this.state;
+    const {doctor_name, appointment_time} = this.state;
     return (
       <>
         <SafeAreaView style={{backgroundColor: 'white'}} />
@@ -22,7 +41,7 @@ export default class Success extends React.Component {
               justifyContent: 'center',
             }}>
             <Text style={styles.blueContainerTitle}>
-              Your Appointment with Dr. Ram has been successfully booked.
+              {`Your Appointment with ${doctor_name} has been successfully booked.`}
             </Text>
             <View style={styles.blueContainer}>
               <Text style={styles.blueContainerTitle}>
@@ -33,9 +52,8 @@ export default class Success extends React.Component {
               </Text>
             </View>
             <Text style={[{fontWeight: '700', marginTop: 20}]}>
-              The Link Will be active at 3:30
+              {`The Link Will be active at ${appointment_time} `}
               <Text style={{fontWeight: 'normal'}}>
-                {' '}
                 It will be active only for{' '}
                 <Text style={{fontWeight: '700'}}>30 mins</Text>. Your are
                 Kindly requested to join the meeting by then

@@ -75,7 +75,6 @@ export default function ScheduleModal(props) {
       .then(data => {
         if ((data.code = '200')) {
           createAppoinment();
-          navigation.navigate('Success');
         } else {
           throw 'err';
         }
@@ -147,9 +146,13 @@ export default function ScheduleModal(props) {
 
     AppointmentHelper.create(data)
       .then(data => {
-        console.log(data);
         if (data.code == 200) {
           alert('Booked!');
+          navigation.navigate('Success', {
+            doctor_id: props.doctor_id,
+            doctor_name: props.doctor_name,
+            timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+          });
         } else if (data.code == 201) {
           alert('Slot not available!');
         } else {
@@ -198,9 +201,12 @@ export default function ScheduleModal(props) {
               todayBackgroundColor="#ffffff"
               width={350}
             />
-            <View style={[styles.blueContainer, {marginTop: 0}]}>
+
+            <View style={[styles.blueContainer, {marginTop: 20}]}>
               <Text style={styles.blueContainerTitle}>Selected Date</Text>
-              <Text style={styles.blueContainerText}>{date + ''}</Text>
+              <Text style={styles.blueContainerText}>
+                {moment(date).format('DD/MM/YYYY')}
+              </Text>
             </View>
 
             <View>
@@ -281,6 +287,7 @@ const styles = StyleSheet.create({
     color: '#00264b',
     fontWeight: '600',
     fontSize: 16,
+    textAlign: 'center',
   },
-  blueContainerText: {color: '#004b96', marginTop: 10},
+  blueContainerText: {color: '#004b96', marginTop: 10, textAlign: 'center'},
 });

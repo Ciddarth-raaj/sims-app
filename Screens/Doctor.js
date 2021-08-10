@@ -81,6 +81,7 @@ export default class Doctor extends React.Component {
         <SafeAreaView>
           <ScheduleModal
             doctor_id={doctor_id}
+            doctor_name={name}
             isVisible={isVisible}
             fee={fees}
             close={() => this.setState({isVisible: false})}
