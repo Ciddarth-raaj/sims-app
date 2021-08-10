@@ -139,8 +139,15 @@ export default function ScheduleModal(props) {
       }
     }
 
+    const formattedDate = moment(
+      moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+      'YYYY-MM-DD hh:mm A',
+    )
+      .utc()
+      .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]');
+
     const data = {
-      timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+      timeslot: new Date(formattedDate).toISOString(),
       doctor_id: props.doctor_id,
     };
 

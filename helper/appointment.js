@@ -67,6 +67,7 @@ const appointment = {
         image: d.image,
         status: d.status,
         status_id: d.status_id,
+        // timeslot: moment(d.timeslot).utc().format('hh:mm A - ddd - DD,MMM'),
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
         // created_at: moment(),
       });

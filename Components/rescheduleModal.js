@@ -28,14 +28,14 @@ export default function ScheduleModal(props) {
   );
   const minDate = new Date();
   const [availableDates, setAvailableDates] = React.useState([
-    {id: 1, time: '09:30', selected: false},
-    {id: 2, time: '10:30', selected: false},
-    {id: 3, time: '11:00', selected: false},
-    {id: 4, time: '11:30', selected: false},
-    {id: 5, time: '12:00', selected: false},
-    {id: 6, time: '12:30', selected: false},
-    {id: 7, time: '03:00', selected: false},
-    {id: 8, time: '03:30', selected: false},
+    {id: 1, time: '09:30 AM', selected: false},
+    {id: 2, time: '10:30 AM', selected: false},
+    {id: 3, time: '11:00 AM', selected: false},
+    {id: 4, time: '11:30 AM', selected: false},
+    {id: 5, time: '12:00 PM', selected: false},
+    {id: 6, time: '12:30 PM', selected: false},
+    {id: 7, time: '03:00 PM', selected: false},
+    {id: 8, time: '03:30 PM', selected: false},
   ]);
 
   useEffect(() => {
@@ -90,9 +90,16 @@ export default function ScheduleModal(props) {
       }
     }
 
+    const formattedDate = moment(
+      moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+      'YYYY-MM-DD hh:mm A',
+    )
+      .utc()
+      .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]');
+
     const data = {
       appointment_id: props.appointment_id,
-      timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+      timeslot: new Date(formattedDate).toISOString(),
     };
 
     AppointmentHelper.update(data)
