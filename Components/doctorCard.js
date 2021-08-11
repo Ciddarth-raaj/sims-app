@@ -2,6 +2,8 @@ import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import {useState} from 'react';
 
+import Colors from '../constants/colors';
+
 import {numberFormat} from '../Util/numberFormat';
 
 export default function DoctorCard(props) {
@@ -40,7 +42,7 @@ export default function DoctorCard(props) {
           <Text
             style={[
               styles.containerText,
-              {color: '#0080ff'},
+              {color: Colors.secondary},
             ]}>{`${specialization} ${
             experience != undefined ? `| ${experience} Years` : ''
           }`}</Text>
@@ -50,7 +52,7 @@ export default function DoctorCard(props) {
           {languages != undefined && (
             <Text style={styles.containerText}>{languages}</Text>
           )}
-          <Text style={[styles.containerText, {color: '#0080ff'}]}>
+          <Text style={[styles.containerText, {color: Colors.secondary}]}>
             <Text style={{color: 'black'}}>Consultation Fees : </Text>
             {numberFormat(fees)}
           </Text>
@@ -67,8 +69,6 @@ export default function DoctorCard(props) {
   );
 }
 
-const color = '#0080ff';
-
 const styles = StyleSheet.create({
   container: {
     padding: 10,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   buttonStyle: {
-    backgroundColor: '#0080ff',
+    backgroundColor: Colors.secondary,
     justifyContent: 'center',
     height: 50,
     // borderBottomRightRadius: 10,

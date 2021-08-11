@@ -10,6 +10,8 @@ import {
   Modal,
 } from 'react-native';
 
+import Colors from '../constants/colors';
+
 import {numberFormat} from '../Util/numberFormat';
 import ScheduleModal from '../Components/scheduleModal';
 
@@ -154,7 +156,7 @@ export default class Doctor extends React.Component {
                 marginTop: 30,
                 alignSelf: 'center',
                 width: '80%',
-                backgroundColor: '#0080ff',
+                backgroundColor: Colors.secondary,
                 padding: 20,
                 borderRadius: 10,
               }}

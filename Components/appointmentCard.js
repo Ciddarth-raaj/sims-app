@@ -8,6 +8,8 @@ import {
   Alert,
 } from 'react-native';
 
+import Colors from '../constants/colors';
+
 import AppointmentHelper from '../helper/appointment';
 import RescheduleModal from './rescheduleModal';
 
@@ -80,14 +82,24 @@ export default function AppointmentCard(props) {
               styles.containerText,
               {fontWeight: '700'},
             ]}>{`Dr ${name}`}</Text>
-          <Text style={{fontWeight: 'bold', color: '#0080ff', marginTop: 10}}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: Colors.secondary,
+              marginTop: 10,
+            }}>
             {'Time : '}
             <Text style={{fontWeight: 'normal', color: 'black'}}>
               {timeSlot}
             </Text>
           </Text>
 
-          <Text style={{fontWeight: 'bold', color: '#0080ff', marginTop: 10}}>
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: Colors.secondary,
+              marginTop: 10,
+            }}>
             {'Status : '}
             <Text style={{fontWeight: 'normal', color: 'black'}}>{status}</Text>
           </Text>
@@ -115,7 +127,7 @@ export default function AppointmentCard(props) {
           <TouchableOpacity
             style={[
               styles.buttonStyle,
-              {backgroundColor: '#0080ff', marginLeft: 10},
+              {backgroundColor: Colors.secondary, marginLeft: 10},
             ]}
             onPress={() => setVisible(true)}>
             <Text

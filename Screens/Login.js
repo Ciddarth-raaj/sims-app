@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import Colors from '../constants/colors';
+
 import UserHelper from '../helper/user';
 
 export default class Login extends React.Component {
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     padding: 15,
-    backgroundColor: '#0088ff',
+    backgroundColor: Colors.secondary,
     alignSelf: 'center',
     width: 150,
     borderRadius: 10,

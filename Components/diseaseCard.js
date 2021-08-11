@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 
+import Colors from '../constants/colors';
+
 import {useState} from 'react';
 
 export default function DiseaseCard(props) {
@@ -47,6 +49,6 @@ const styles = StyleSheet.create({
   imageWrapper: {
     borderRadius: 30,
     padding: 10,
-    backgroundColor: '#0080ff',
+    backgroundColor: Colors.secondary,
   },
 });

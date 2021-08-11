@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Colors from '../constants/colors';
+
 import CalendarPicker from 'react-native-calendar-picker';
 import RazorpayCheckout from 'react-native-razorpay';
 import {numberFormat} from '../Util/numberFormat';
@@ -95,7 +97,7 @@ export default function ScheduleModal(props) {
         amount: fee,
         name: 'SIMS Hospital',
         order_id: order_id,
-        theme: {color: '#0088ff'},
+        theme: {color: Colors.secondary},
       };
 
       if (patientDetails.code == 200) {
@@ -248,7 +250,7 @@ export default function ScheduleModal(props) {
                 marginTop: 10,
                 alignSelf: 'center',
                 width: '80%',
-                backgroundColor: '#0080ff',
+                backgroundColor: Colors.secondary,
                 padding: 20,
                 borderRadius: 10,
               }}
