@@ -7,7 +7,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-//import {numberFormat} from '../numberFormat';
+
+import Colors from '../constants/colors';
+
 import {useState} from 'react';
 
 export default function HomeCard(props) {
@@ -30,9 +32,6 @@ export default function HomeCard(props) {
   );
 }
 
-//const color = '#0080ff';
-const color = '#FFFFFF';
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#e1f0ff',
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     padding: 10,
-    backgroundColor: '#0080ff',
+    backgroundColor: Colors.secondary,
     borderRadius: 100,
     alignSelf: 'center',
     justifyContent: 'center',

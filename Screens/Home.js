@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import Colors from '../constants/colors';
+
 import HomeCard from '../Components/homeCard';
 import GlobalWrapper from '../Components/GlobalWrapper';
 
@@ -36,6 +38,7 @@ export default class Home extends React.Component {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: 10,
+                  paddingTop: 20,
                 }}>
                 <View>
                   <View>
@@ -43,7 +46,7 @@ export default class Home extends React.Component {
                       style={{
                         fontSize: 25,
                         fontWeight: '700',
-                        color: '#0080ff',
+                        color: Colors.secondary,
                       }}>
                       {`Hi ${global.config.name} ,`}
                     </Text>
@@ -128,7 +131,7 @@ const styles = StyleSheet.create({
   counterWrap: {
     width: 30,
     height: 30,
-    backgroundColor: '#0080ff',
+    backgroundColor: Colors.secondary,
     justifyContent: 'center',
     borderRadius: 10,
     alignSelf: 'center',
