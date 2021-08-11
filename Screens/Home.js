@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   counterWrap: {
     width: 30,
     height: 30,
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     borderRadius: 10,
     alignSelf: 'center',
