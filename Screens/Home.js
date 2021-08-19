@@ -29,71 +29,64 @@ export default class Home extends React.Component {
     return (
       <GlobalWrapper>
         <>
-          <SafeAreaView style={{backgroundColor: 'white'}} />
-          <SafeAreaView>
-            <ScrollView style={{height: '100%', backgroundColor: 'white'}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  padding: 10,
-                  paddingTop: 20,
-                }}>
-                <View>
-                  <View>
-                    <Text
-                      style={{
-                        fontSize: 25,
-                        fontWeight: '700',
-                        color: Colors.secondary,
-                      }}>
-                      {`Hi ${global.config.name} ,`}
-                    </Text>
-                  </View>
-                  <Text style={{fontSize: 19, fontWeight: '500'}}>
-                    How can we help you?
-                  </Text>
-                </View>
-
-                <TouchableOpacity onPress={() => this.logout()}>
-                  <Text>{'Logout'}</Text>
-                </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: 10,
+              paddingTop: 20,
+            }}>
+            <View>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 25,
+                    fontWeight: '700',
+                    color: Colors.secondary,
+                  }}>
+                  {`Hi ${global.config.name} ,`}
+                </Text>
               </View>
-              <View
-                style={{
-                  flexWrap: 'wrap',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                }}>
-                <HomeCard
-                  title="Find A Doctor"
-                  image={require('../assets/doctor.png')}
-                  pressAction={() => this.props.navigation.navigate('Search')}
-                />
-                <HomeCard
-                  title="Apointments"
-                  image={require('../assets/list.png')}
-                  pressAction={() =>
-                    this.props.navigation.navigate('Reschedule')
-                  }
-                />
-                {/* <HomeCard
+              <Text style={{fontSize: 19, fontWeight: '500'}}>
+                How can we help you?
+              </Text>
+            </View>
+
+            <TouchableOpacity onPress={() => this.logout()}>
+              <Text>{'Logout'}</Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}>
+            <HomeCard
+              title="Find A Doctor"
+              image={require('../assets/doctor.png')}
+              pressAction={() => this.props.navigation.navigate('Search')}
+            />
+            <HomeCard
+              title="Apointments"
+              image={require('../assets/list.png')}
+              pressAction={() => this.props.navigation.navigate('Reschedule')}
+            />
+            {/* <HomeCard
                 title="Cancel Appointment"
                 image={require('../assets/close.png')}
                 pressAction={() => this.props.navigation.navigate('Cancel')}
               /> */}
-              </View>
+          </View>
 
-              <View style={styles.container1}>
-                <View style={styles.counterWrap}>
-                  <Text style={{textAlign: 'center', color: 'white'}}>1</Text>
-                </View>
-                <Text style={styles.container1Text}>Upcoming Appointments</Text>
-                <Text style={styles.container1Text}>{'>'}</Text>
-              </View>
-            </ScrollView>
-          </SafeAreaView>
+          <View style={styles.container1}>
+            <View style={styles.counterWrap}>
+              <Text style={{textAlign: 'center', color: 'white'}}>1</Text>
+            </View>
+            <Text style={styles.container1Text}>Upcoming Appointments</Text>
+            <Text style={styles.container1Text}>{'>'}</Text>
+          </View>
         </>
       </GlobalWrapper>
     );
