@@ -68,12 +68,12 @@ export default class Home extends React.Component {
                 }}>
                 <HomeCard
                   title="Find A Doctor"
-                  image={require('../assets/medical-doctor-specialist.png')}
+                  image={require('../assets/doctor.png')}
                   pressAction={() => this.props.navigation.navigate('Search')}
                 />
                 <HomeCard
                   title="Apointments"
-                  image={require('../assets/clock.png')}
+                  image={require('../assets/list.png')}
                   pressAction={() =>
                     this.props.navigation.navigate('Reschedule')
                   }
