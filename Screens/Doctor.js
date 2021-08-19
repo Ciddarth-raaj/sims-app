@@ -14,6 +14,7 @@ import Colors from '../constants/colors';
 
 import {numberFormat} from '../Util/numberFormat';
 import ScheduleModal from '../Components/scheduleModal';
+import GlobalWrapper from '../Components/GlobalWrapper';
 
 import DoctorHelper from '../helper/doctor';
 
@@ -78,9 +79,8 @@ export default class Doctor extends React.Component {
       doctor_id,
     } = this.state;
     return (
-      <>
-        <SafeAreaView style={{backgroundColor: 'white'}} />
-        <SafeAreaView>
+      <GlobalWrapper>
+        <>
           <ScheduleModal
             doctor_id={doctor_id}
             doctor_name={name}
@@ -89,8 +89,7 @@ export default class Doctor extends React.Component {
             close={() => this.setState({isVisible: false})}
             navigation={this.props.navigation}
           />
-          <ScrollView
-            style={{padding: 20, height: '100%', backgroundColor: 'white'}}>
+          <View style={{padding: 20}}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Image
                 source={require('../assets/back.png')}
@@ -170,9 +169,9 @@ export default class Doctor extends React.Component {
                 BOOK APPOINTMENT
               </Text>
             </TouchableOpacity>
-          </ScrollView>
-        </SafeAreaView>
-      </>
+          </View>
+        </>
+      </GlobalWrapper>
     );
   }
 }

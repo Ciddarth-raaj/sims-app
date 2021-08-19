@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import AppointmentCard from '../Components/appointmentCard';
+import GlobalWrapper from '../Components/GlobalWrapper';
 
 import AppointmentHelper from '../helper/appointment';
 
@@ -39,44 +40,40 @@ export default class Reschedule extends React.Component {
   render() {
     const {appointments} = this.state;
     return (
-      <>
-        <SafeAreaView style={{backgroundColor: 'white'}} />
-        <SafeAreaView>
-          <ScrollView
-            style={{height: '100%', backgroundColor: 'white', padding: 10}}>
-            <View style={{flexDirection: 'row'}}>
-              <TouchableOpacity
-                style={{alignSelf: 'center', marginRight: 5}}
-                onPress={() => this.props.navigation.goBack()}>
-                <Image
-                  source={require('../assets/back.png')}
-                  style={{width: 30, height: 30}}
-                />
-              </TouchableOpacity>
-              <Text
-                style={{
-                  fontSize: 19,
-                  fontWeight: 'bold',
-                  marginTop: 10,
-                  marginBottom: 10,
-                }}>
-                Appointments
-              </Text>
-            </View>
-            {appointments.map(a => (
-              <AppointmentCard
-                id={a.appointment_id}
-                name={a.doctor_name}
-                status={a.status}
-                status_id={a.status_id}
-                timeSlot={a.timeslot}
-                navigation={this.props.navigation}
-                getAppointments={() => this.getAppointments()}
+      <GlobalWrapper>
+        <View style={{padding: 20}}>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity
+              style={{alignSelf: 'center', marginRight: 5}}
+              onPress={() => this.props.navigation.goBack()}>
+              <Image
+                source={require('../assets/back.png')}
+                style={{width: 30, height: 30}}
               />
-            ))}
-          </ScrollView>
-        </SafeAreaView>
-      </>
+            </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 19,
+                fontWeight: 'bold',
+                marginTop: 10,
+                marginBottom: 10,
+              }}>
+              Appointments
+            </Text>
+          </View>
+          {appointments.map(a => (
+            <AppointmentCard
+              id={a.appointment_id}
+              name={a.doctor_name}
+              status={a.status}
+              status_id={a.status_id}
+              timeSlot={a.timeslot}
+              navigation={this.props.navigation}
+              getAppointments={() => this.getAppointments()}
+            />
+          ))}
+        </View>
+      </GlobalWrapper>
     );
   }
 }

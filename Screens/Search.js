@@ -5,6 +5,7 @@ import SearchHeader from '../Components/searchHeader';
 import DoctorCard from '../Components/doctorCard';
 import DiseaseCard from '../Components/diseaseCard';
 import API from '../Util/api';
+import GlobalWrapper from '../Components/GlobalWrapper';
 
 import DoctorHelper from '../helper/doctor';
 import SpecialisationHelper from '../helper/specialisation';
@@ -82,45 +83,40 @@ export default class Search extends React.Component {
     const {docList, specList, sortedDocList, sortedSpecList} = this.state;
 
     return (
-      <>
-        <SafeAreaView style={{backgroundColor: 'white', flex: 0}} />
-        <SafeAreaView style={{backgroundColor: 'white'}}>
+      <GlobalWrapper>
+        <View style={{padding: 20, paddingTop: 0}}>
           <SearchHeader
             onSearch={val => this.handleSearch(val)}
             navigation={this.props.navigation}
           />
-          <ScrollView style={{height: '100%', padding: 10}}>
-            <View style={{paddingBottom: 120}}>
-              <Text style={styles.titleText}>Specialisations</Text>
-              {(sortedSpecList.length > 0 ? sortedSpecList : specList).map(
-                s => (
-                  <DiseaseCard
-                    id={s.specialisation_id}
-                    name={s.label}
-                    subtitle={s.sub}
-                    image={s.image}
-                    navigation={this.props.navigation}
-                  />
-                ),
-              )}
+          <View style={{paddingBottom: 120}}>
+            <Text style={styles.titleText}>Specialisations</Text>
+            {(sortedSpecList.length > 0 ? sortedSpecList : specList).map(s => (
+              <DiseaseCard
+                id={s.specialisation_id}
+                name={s.label}
+                subtitle={s.sub}
+                image={s.image}
+                navigation={this.props.navigation}
+              />
+            ))}
 
-              <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
-              {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
-                <DoctorCard
-                  id={d.id}
-                  name={d.doctor_name}
-                  qualification={d.qualification}
-                  specialization={d.specialisation}
-                  experience={d.experience}
-                  languages={d.languages}
-                  fees={d.fees}
-                  navigation={this.props.navigation}
-                />
-              ))}
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </>
+            <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
+            {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
+              <DoctorCard
+                id={d.id}
+                name={d.doctor_name}
+                qualification={d.qualification}
+                specialization={d.specialisation}
+                experience={d.experience}
+                languages={d.languages}
+                fees={d.fees}
+                navigation={this.props.navigation}
+              />
+            ))}
+          </View>
+        </View>
+      </GlobalWrapper>
     );
   }
 }
