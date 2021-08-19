@@ -8,11 +8,13 @@ export default class Header extends React.Component {
     return (
       <View style={styles.wrapper}>
         <View style={styles.header}>
-          {/* <Image
-            source={require('../assets/medical-doctor-specialist.png')}
-            style={styles.image}
-            resizeMode={'contain'}
-          /> */}
+          <View style={styles.imageWrapper}>
+            <Image
+              source={require('../assets/sims-logo.png')}
+              style={styles.image}
+              resizeMode={'contain'}
+            />
+          </View>
           <Text style={styles.companyName}>{'SIMS Hospital'}</Text>
         </View>
       </View>
@@ -34,10 +36,13 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   image: {
-    width: 30,
+    width: 60,
     height: 30,
-    borderRadius: 4,
-    // backgroundColor: 'white',
+  },
+  imageWrapper: {
+    backgroundColor: 'white',
+    padding: 5,
+    borderRadius: 5,
   },
   header: {
     display: 'flex',

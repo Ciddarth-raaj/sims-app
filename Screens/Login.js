@@ -7,6 +7,7 @@ import {
   TextInput,
   Text,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -74,15 +75,20 @@ export default class Login extends React.Component {
         <SafeAreaView
           style={{backgroundColor: 'white', flex: 1, justifyContent: 'center'}}>
           <View style={styles.wrapper}>
-            <Text
+            <Image
+              source={require('../assets/sims-logo.png')}
+              style={styles.logo}
+              resizeMode={'contain'}
+            />
+            {/* <Text
               style={{
                 textAlign: 'center',
                 marginBottom: 20,
                 fontWeight: 'bold',
                 fontSize: 32,
               }}>
-              LOGIN
-            </Text>
+              Login
+            </Text> */}
             <TextInput
               value={phone}
               placeholder={'Phone Number'}
@@ -133,5 +139,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
+  },
+  logo: {
+    alignSelf: 'center',
+    height: 100,
+    position: 'absolute',
+    top: -120,
   },
 });
