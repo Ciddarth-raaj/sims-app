@@ -70,6 +70,7 @@ export default class Upcoming extends React.Component {
               timeSlot={a.timeslot}
               navigation={this.props.navigation}
               getAppointments={() => this.getAppointments()}
+              type={'upcoming'}
             />
           ))}
         </View>

@@ -23,6 +23,7 @@ export default function AppointmentCard(props) {
     getAppointments,
     status,
     status_id,
+    type,
   } = props;
   const [isVisible, setVisible] = React.useState(false);
 
@@ -106,7 +107,7 @@ export default function AppointmentCard(props) {
         </View>
       </View>
 
-      {status_id != 5 && (
+      {status_id != 5 && type != 'upcoming' && (
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[
@@ -136,6 +137,19 @@ export default function AppointmentCard(props) {
             </Text>
           </TouchableOpacity>
         </View>
+      )}
+
+      {type == 'upcoming' && (
+        <TouchableOpacity
+          style={[
+            styles.buttonStyle,
+            {backgroundColor: Colors.secondary, marginLeft: 10},
+          ]}>
+          <Text
+            style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
+            JOIN MEET
+          </Text>
+        </TouchableOpacity>
       )}
     </View>
   );
