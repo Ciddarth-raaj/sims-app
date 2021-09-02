@@ -11,6 +11,7 @@ import Reschedule from './Screens/Reschedule';
 import Cancel from './Screens/Cancel';
 import Success from './Screens/Success';
 import Login from './Screens/Login';
+import Upcoming from './Screens/Upcoming';
 
 import './constants/variables';
 
@@ -60,6 +61,11 @@ function App() {
         <Stack.Screen
           name="Success"
           component={Success}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Upcoming"
+          component={Upcoming}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
