@@ -15,9 +15,30 @@ import Colors from '../constants/colors';
 import HomeCard from '../Components/homeCard';
 import GlobalWrapper from '../Components/GlobalWrapper';
 
+import AppointmentHelper from '../helper/appointment';
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      upcoming_count: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.getUpcomingCount();
+  }
+
+  getUpcomingCount() {
+    AppointmentHelper.getUpcoming()
+      .then(data => {
+        if (data.code == undefined) {
+          this.setState({upcoming_count: data.length});
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   async logout() {
@@ -26,6 +47,8 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const {upcoming_count} = this.state;
+
     return (
       <GlobalWrapper>
         <>
@@ -82,7 +105,9 @@ export default class Home extends React.Component {
 
           <View style={styles.container1}>
             <View style={styles.counterWrap}>
-              <Text style={{textAlign: 'center', color: 'white'}}>1</Text>
+              <Text style={{textAlign: 'center', color: 'white'}}>
+                {upcoming_count}
+              </Text>
             </View>
             <Text style={styles.container1Text}>Upcoming Appointments</Text>
             <Text style={styles.container1Text}>{'>'}</Text>

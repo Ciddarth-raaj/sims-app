@@ -56,6 +56,24 @@ const appointment = {
           reject(err);
         });
     }),
+  getUpcoming: () =>
+    new Promise(function (resolve, reject) {
+      API.get('appointment/upcoming', {
+        headers: {
+          'x-access-token': global.config.accessToken,
+        },
+      })
+        .then(async res => {
+          if (res.status === 200) {
+            resolve(appointment.format(res.data));
+          } else {
+            reject(res);
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }),
   format: data => {
     const formatted = [];
 
