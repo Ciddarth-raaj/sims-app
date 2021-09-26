@@ -35,7 +35,7 @@ export default class Login extends React.Component {
   }
 
   login() {
-    const {phone, password} = this.state;
+    const { phone, password } = this.state;
 
     if (phone == '' || password == '') {
       alert('Fill all fields to continue!');
@@ -68,12 +68,12 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const {phone, password} = this.state;
+    const { phone, password } = this.state;
     return (
       <>
-        <SafeAreaView style={{backgroundColor: 'white'}} />
+        <SafeAreaView style={{ backgroundColor: 'white' }} />
         <SafeAreaView
-          style={{backgroundColor: 'white', flex: 1, justifyContent: 'center'}}>
+          style={{ backgroundColor: 'white', flex: 1, justifyContent: 'center' }}>
           <View style={styles.wrapper}>
             <Image
               source={require('../assets/sims-logo.png')}
@@ -93,7 +93,7 @@ export default class Login extends React.Component {
               value={phone}
               placeholder={'Phone Number'}
               placeholderTextColor="#879099"
-              onChangeText={v => this.setState({phone: v})}
+              onChangeText={v => this.setState({ phone: v })}
               style={styles.textInputStyle}
               keyboardType={'phone-pad'}
             />
@@ -101,7 +101,7 @@ export default class Login extends React.Component {
               value={password}
               placeholder={'Password'}
               placeholderTextColor="#879099"
-              onChangeText={v => this.setState({password: v})}
+              onChangeText={v => this.setState({ password: v })}
               style={styles.textInputStyle}
               secureTextEntry={true}
             />
