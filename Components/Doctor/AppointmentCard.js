@@ -38,14 +38,32 @@ export default function AppointmentCard(props) {
         {
           text: 'Yes',
           style: 'default',
-          onPress: () => cancelCall(),
+          onPress: () => updateAppointment(5),
         },
       ],
     );
   };
 
-  const cancelCall = () => {
-    const data = { appointment_id: id, appointment_status: 5 };
+  const confirmAppointment = () => {
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to confirm this appointment?',
+      [
+        {
+          text: 'No',
+          style: 'destructive',
+        },
+        {
+          text: 'Yes',
+          style: 'default',
+          onPress: () => updateAppointment(2),
+        },
+      ],
+    );
+  };
+
+  const updateAppointment = (status) => {
+    const data = { appointment_id: id, appointment_status: status };
     AppointmentHelper.update(data)
       .then(data => {
         if (data.code == 200) {
@@ -116,17 +134,17 @@ export default function AppointmentCard(props) {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
+          {status_id != 2 && <TouchableOpacity
             style={[
               styles.buttonStyle,
               { backgroundColor: Colors.secondary, marginLeft: 10 },
             ]}
-            onPress={() => setVisible(true)}>
+            onPress={() => confirmAppointment()}>
             <Text
               style={{ textAlign: 'center', color: 'white', fontWeight: 'bold' }}>
               CONFIRM
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>}
         </View>
       )}
 
