@@ -38,10 +38,27 @@ export default function AppointmentCard(props) {
         {
           text: 'Yes',
           style: 'default',
-          // onPress: () => cancelCall(),
+          onPress: () => cancelCall(),
         },
       ],
     );
+  };
+
+  const cancelCall = () => {
+    const data = { appointment_id: id, appointment_status: 5 };
+    AppointmentHelper.update(data)
+      .then(data => {
+        if (data.code == 200) {
+          getAppointments();
+          alert('Appointment Cancelled');
+        } else {
+          throw 'error';
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert('Error cancelling appointment! Try again later!');
+      });
   };
 
   return (
