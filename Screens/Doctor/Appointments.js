@@ -19,27 +19,19 @@ export default class Appointments extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            appointments: [
-                {
-                    appointment_id: 1,
-                    doctor_id: 1,
-                    doctor_name: "Test",
-                    image: null,
-                    status: "Pending",
-                    status_id: 1,
-                    timeslot: "00:00: AM - Tue - 09,Jan",
-                }
-            ],
+            appointments: [],
         };
     }
 
     componentDidMount() {
-        // this.getAppointments();
+        this.getAppointments();
     }
 
     getAppointments() {
-        AppointmentHelper.get()
-            .then(data => this.setState({ appointments: data }))
+        AppointmentHelper.getPatients()
+            .then(data => {
+                this.setState({ appointments: data })
+            })
             .catch(err => console.log(err));
     }
 

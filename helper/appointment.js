@@ -85,32 +85,45 @@ const appointment = {
         image: d.image,
         status: d.status,
         status_id: d.status_id,
-        // timeslot: moment(d.timeslot).utc().format('hh:mm A - ddd - DD,MMM'),
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
-        // created_at: moment(),
       });
     }
 
     return formatted;
   },
-  // getFilterUrl: filter => {
-  //   if (filter == undefined) {
-  //     return '';
-  //   }
+  getPatients: () =>
+    new Promise(function (resolve, reject) {
+      API.get('appointment/patients', {
+        headers: {
+          'x-access-token': global.config.accessToken,
+        },
+      })
+        .then(async res => {
+          if (res.status === 200) {
+            resolve(appointment.formatPatients(res.data));
+          } else {
+            reject(res);
+          }
+        })
+        .catch(err => {
+          reject(err);
+        });
+    }),
+  formatPatients: data => {
+    const formatted = [];
 
-  //   let filterUrl = '';
+    for (const d of data) {
+      formatted.push({
+        appointment_id: d.appointment_id,
+        doctor_name: d.name,
+        status: d.status,
+        status_id: d.status_id,
+        timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
+      });
+    }
 
-  //   if (
-  //     filter.specialisations !== undefined &&
-  //     filter.specialisations.length > 0
-  //   ) {
-  //     filter.specialisations.forEach(
-  //       (b, i) => (filterUrl += '&specialisations[' + i + ']=' + b),
-  //     );
-  //   }
-
-  //   return filterUrl;
-  // },
+    return formatted;
+  },
 };
 
 export default appointment;
