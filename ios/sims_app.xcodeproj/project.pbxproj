@@ -11,9 +11,10 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5041421B270070730042B1A5 /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5041421A270070730042B1A5 /* libswiftWebKit.tbd */; };
+		6C925675B69C65DB3B60A701 /* libPods-sims_app-sims_appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A4986AFFCDDFABCD5AAED3C /* libPods-sims_app-sims_appTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		97BDF19C7B5C424FF60036BB /* libPods-sims_app-sims_appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 835D42BD0C3DDD51F330C1B1 /* libPods-sims_app-sims_appTests.a */; };
-		B8263A4B8A18D0330CA9C074 /* libPods-sims_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8935463D5D55DA678FD634 /* libPods-sims_app.a */; };
+		D9C3096B916BD56ABC00A91F /* libPods-sims_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB15FF5A03447C150597DEDF /* libPods-sims_app.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +31,21 @@
 		00E356EE1AD99517003FC87E /* sims_appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sims_appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* sims_appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sims_appTests.m; sourceTree = "<group>"; };
-		0454718F41F9FF6FCF44BE8D /* Pods-sims_app-sims_appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app-sims_appTests.debug.xcconfig"; path = "Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* sims_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sims_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = sims_app/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = sims_app/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = sims_app/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = sims_app/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = sims_app/main.m; sourceTree = "<group>"; };
-		15BAF212CC0F1302FA197A46 /* Pods-sims_app-sims_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app-sims_appTests.release.xcconfig"; path = "Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests.release.xcconfig"; sourceTree = "<group>"; };
+		1A2CC3748F708B0B6F2B9F3C /* Pods-sims_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app.debug.xcconfig"; path = "Target Support Files/Pods-sims_app/Pods-sims_app.debug.xcconfig"; sourceTree = "<group>"; };
+		2501146007ADE4F3ADA62BA3 /* Pods-sims_app-sims_appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app-sims_appTests.debug.xcconfig"; path = "Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5041421A270070730042B1A5 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
+		6A4986AFFCDDFABCD5AAED3C /* libPods-sims_app-sims_appTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sims_app-sims_appTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = sims_app/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		835D42BD0C3DDD51F330C1B1 /* libPods-sims_app-sims_appTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sims_app-sims_appTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB8935463D5D55DA678FD634 /* libPods-sims_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sims_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C61743F4D37B4514DDF8EF0D /* Pods-sims_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app.release.xcconfig"; path = "Target Support Files/Pods-sims_app/Pods-sims_app.release.xcconfig"; sourceTree = "<group>"; };
+		A188832C3A9C3336CAB0C653 /* Pods-sims_app-sims_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app-sims_appTests.release.xcconfig"; path = "Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests.release.xcconfig"; sourceTree = "<group>"; };
+		B75CB4BEFBFEDE9A3159B66C /* Pods-sims_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app.release.xcconfig"; path = "Target Support Files/Pods-sims_app/Pods-sims_app.release.xcconfig"; sourceTree = "<group>"; };
+		EB15FF5A03447C150597DEDF /* libPods-sims_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sims_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F4D53A46889E90458C6F03ED /* Pods-sims_app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sims_app.debug.xcconfig"; path = "Target Support Files/Pods-sims_app/Pods-sims_app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97BDF19C7B5C424FF60036BB /* libPods-sims_app-sims_appTests.a in Frameworks */,
+				6C925675B69C65DB3B60A701 /* libPods-sims_app-sims_appTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8263A4B8A18D0330CA9C074 /* libPods-sims_app.a in Frameworks */,
+				5041421B270070730042B1A5 /* libswiftWebKit.tbd in Frameworks */,
+				D9C3096B916BD56ABC00A91F /* libPods-sims_app.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,23 +102,12 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5041421A270070730042B1A5 /* libswiftWebKit.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				AB8935463D5D55DA678FD634 /* libPods-sims_app.a */,
-				835D42BD0C3DDD51F330C1B1 /* libPods-sims_app-sims_appTests.a */,
+				EB15FF5A03447C150597DEDF /* libPods-sims_app.a */,
+				6A4986AFFCDDFABCD5AAED3C /* libPods-sims_app-sims_appTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		80EF53C83FF2D6016D1C23CF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F4D53A46889E90458C6F03ED /* Pods-sims_app.debug.xcconfig */,
-				C61743F4D37B4514DDF8EF0D /* Pods-sims_app.release.xcconfig */,
-				0454718F41F9FF6FCF44BE8D /* Pods-sims_app-sims_appTests.debug.xcconfig */,
-				15BAF212CC0F1302FA197A46 /* Pods-sims_app-sims_appTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -133,7 +125,7 @@
 				00E356EF1AD99517003FC87E /* sims_appTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				80EF53C83FF2D6016D1C23CF /* Pods */,
+				AF2B1D4A0AB88B84BCAF794B /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +141,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AF2B1D4A0AB88B84BCAF794B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A2CC3748F708B0B6F2B9F3C /* Pods-sims_app.debug.xcconfig */,
+				B75CB4BEFBFEDE9A3159B66C /* Pods-sims_app.release.xcconfig */,
+				2501146007ADE4F3ADA62BA3 /* Pods-sims_app-sims_appTests.debug.xcconfig */,
+				A188832C3A9C3336CAB0C653 /* Pods-sims_app-sims_appTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,12 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "sims_appTests" */;
 			buildPhases = (
-				D0622739C7D454719D43C934 /* [CP] Check Pods Manifest.lock */,
+				525C59F68507BEBFE8F00868 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				DF4AF3CCB9C89955747CDFAA /* [CP] Embed Pods Frameworks */,
-				2CF04DE111EEE462595D5FE4 /* [CP] Copy Pods Resources */,
+				06BD874AC8C36FD6D171C15D /* [CP] Embed Pods Frameworks */,
+				35714EBCC3D3B58307B5BB67 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -177,14 +180,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "sims_app" */;
 			buildPhases = (
-				34D5AA34F8E26D5B24A469D0 /* [CP] Check Pods Manifest.lock */,
+				E70EE9425EC341D9E5F856A9 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				04980A37EA0E808A69E7A894 /* [CP] Embed Pods Frameworks */,
-				760B16DB2BB23BE59841A01B /* [CP] Copy Pods Resources */,
+				845DA06A6FB84C17F24DFED0 /* [CP] Embed Pods Frameworks */,
+				B667B145FCACD0C8966E2E02 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,24 +268,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		04980A37EA0E808A69E7A894 /* [CP] Embed Pods Frameworks */ = {
+		06BD874AC8C36FD6D171C15D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2CF04DE111EEE462595D5FE4 /* [CP] Copy Pods Resources */ = {
+		35714EBCC3D3B58307B5BB67 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -299,46 +302,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		34D5AA34F8E26D5B24A469D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-sims_app-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		760B16DB2BB23BE59841A01B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D0622739C7D454719D43C934 /* [CP] Check Pods Manifest.lock */ = {
+		525C59F68507BEBFE8F00868 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,21 +324,60 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DF4AF3CCB9C89955747CDFAA /* [CP] Embed Pods Frameworks */ = {
+		845DA06A6FB84C17F24DFED0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app-sims_appTests/Pods-sims_app-sims_appTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B667B145FCACD0C8966E2E02 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-sims_app/Pods-sims_app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E70EE9425EC341D9E5F856A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sims_app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -429,7 +432,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0454718F41F9FF6FCF44BE8D /* Pods-sims_app-sims_appTests.debug.xcconfig */;
+			baseConfigurationReference = 2501146007ADE4F3ADA62BA3 /* Pods-sims_app-sims_appTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -456,7 +459,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15BAF212CC0F1302FA197A46 /* Pods-sims_app-sims_appTests.release.xcconfig */;
+			baseConfigurationReference = A188832C3A9C3336CAB0C653 /* Pods-sims_app-sims_appTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -480,16 +483,21 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4D53A46889E90458C6F03ED /* Pods-sims_app.debug.xcconfig */;
+			baseConfigurationReference = 1A2CC3748F708B0B6F2B9F3C /* Pods-sims_app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = sims_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -506,15 +514,20 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C61743F4D37B4514DDF8EF0D /* Pods-sims_app.release.xcconfig */;
+			baseConfigurationReference = B75CB4BEFBFEDE9A3159B66C /* Pods-sims_app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = sims_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
