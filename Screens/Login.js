@@ -27,10 +27,11 @@ export default class Login extends React.Component {
   async componentDidMount() {
     const token = await AsyncStorage.getItem('token');
     const name = await AsyncStorage.getItem('name');
-    if (token != undefined || token != undefined) {
+    const role_id = await AsyncStorage.getItem('role_id');
+    if (token != undefined || token != null) {
       global.config.accessToken = token;
       global.config.name = name;
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate(role_id == 2 ? 'DoctorHome' : 'Home');
     }
   }
 
@@ -52,9 +53,10 @@ export default class Login extends React.Component {
         if (data.code == 200) {
           await AsyncStorage.setItem('token', data.token);
           await AsyncStorage.setItem('name', data.name);
+          await AsyncStorage.setItem('role_id', data.role_id + "");
           global.config.accessToken = data.token;
           global.config.name = data.name;
-          this.props.navigation.navigate('Home');
+          this.props.navigation.navigate(data.role_id == "2" ? "DoctorHome" : 'Home');
         } else if (data.code == 404) {
           alert('Incorrect Phone Number / Password');
         } else {
