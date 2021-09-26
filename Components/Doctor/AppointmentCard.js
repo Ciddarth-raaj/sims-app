@@ -8,10 +8,9 @@ import {
   Alert,
 } from 'react-native';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
-import AppointmentHelper from '../helper/appointment';
-import RescheduleModal from './rescheduleModal';
+import AppointmentHelper from '../../helper/appointment';
 
 export default function AppointmentCard(props) {
   const {
@@ -39,42 +38,17 @@ export default function AppointmentCard(props) {
         {
           text: 'Yes',
           style: 'default',
-          onPress: () => cancelCall(),
+          // onPress: () => cancelCall(),
         },
       ],
     );
   };
 
-  const cancelCall = () => {
-    const data = { appointment_id: id, appointment_status: 5 };
-    AppointmentHelper.update(data)
-      .then(data => {
-        if (data.code == 200) {
-          getAppointments();
-          alert('Appointment Cancelled');
-        } else {
-          throw 'error';
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        alert('Error cancelling appointment! Try again later!');
-      });
-  };
-
   return (
     <View style={{ marginTop: 40 }}>
-      <RescheduleModal
-        appointment_id={id}
-        timeSlot={timeSlot}
-        isVisible={isVisible}
-        close={() => setVisible(false)}
-        navigation={navigation}
-        getAppointments={() => getAppointments()}
-      />
       <View style={{ flexDirection: 'row' }}>
         <Image
-          source={require('../assets/happydoctor.jpg')}
+          source={require('../../assets/happydoctor.jpg')}
           style={{ width: 80, height: 80, borderRadius: 50 }}
         />
         <View style={{ justifyContent: 'center' }}>
@@ -133,7 +107,7 @@ export default function AppointmentCard(props) {
             onPress={() => setVisible(true)}>
             <Text
               style={{ textAlign: 'center', color: 'white', fontWeight: 'bold' }}>
-              RESCHEDULE
+              CONFIRM
             </Text>
           </TouchableOpacity>
         </View>

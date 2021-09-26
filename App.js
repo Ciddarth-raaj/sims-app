@@ -13,6 +13,7 @@ import Success from './Screens/Success';
 import Login from './Screens/Login';
 import Upcoming from './Screens/Upcoming';
 import DoctorHome from './Screens/Doctor/Home';
+import DoctorAppointments from './Screens/Doctor/Appointments';
 
 import './constants/variables';
 
@@ -73,6 +74,11 @@ function App() {
         <Stack.Screen
           name="DoctorHome"
           component={DoctorHome}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="DoctorAppointments"
+          component={DoctorAppointments}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
