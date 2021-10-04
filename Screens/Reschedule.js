@@ -29,26 +29,26 @@ export default class Reschedule extends React.Component {
 
   getAppointments() {
     AppointmentHelper.get()
-      .then(data => this.setState({appointments: data}))
+      .then(data => this.setState({ appointments: data }))
       .catch(err => console.log(err));
   }
 
   openModal() {
-    this.setState({isVisible: true});
+    this.setState({ isVisible: true });
   }
 
   render() {
-    const {appointments} = this.state;
+    const { appointments } = this.state;
     return (
       <GlobalWrapper>
-        <View style={{padding: 20}}>
-          <View style={{flexDirection: 'row'}}>
+        <View style={{ padding: 20 }}>
+          <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
-              style={{alignSelf: 'center', marginRight: 5}}
+              style={{ alignSelf: 'center', marginRight: 5 }}
               onPress={() => this.props.navigation.goBack()}>
               <Image
                 source={require('../assets/back.png')}
-                style={{width: 30, height: 30}}
+                style={{ width: 30, height: 30 }}
               />
             </TouchableOpacity>
             <Text
@@ -68,6 +68,7 @@ export default class Reschedule extends React.Component {
               status={a.status}
               status_id={a.status_id}
               timeSlot={a.timeslot}
+              meetingLink={a.meetingLink}
               navigation={this.props.navigation}
               getAppointments={() => this.getAppointments()}
             />
