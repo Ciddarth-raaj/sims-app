@@ -70,6 +70,7 @@ export default class Appointments extends React.Component {
                             status={a.status}
                             status_id={a.status_id}
                             timeSlot={a.timeslot}
+                            meetingLink={a.meetingLink}
                             navigation={this.props.navigation}
                             getAppointments={() => this.getAppointments()}
                         />

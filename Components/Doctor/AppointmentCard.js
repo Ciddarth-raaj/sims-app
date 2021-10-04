@@ -23,6 +23,7 @@ export default function AppointmentCard(props) {
     status,
     status_id,
     type,
+    meetingLink
   } = props;
   const [isVisible, setVisible] = React.useState(false);
 
@@ -78,6 +79,10 @@ export default function AppointmentCard(props) {
         alert('Error cancelling appointment! Try again later!');
       });
   };
+
+  const joinMeeting = () => {
+    alert(meetingLink)
+  }
 
   return (
     <View style={{ marginTop: 40 }}>
@@ -145,6 +150,20 @@ export default function AppointmentCard(props) {
               CONFIRM
             </Text>
           </TouchableOpacity>}
+
+          {
+            status_id == 2 && meetingLink != null && <TouchableOpacity
+              style={[
+                styles.buttonStyle,
+                { backgroundColor: Colors.secondary, marginLeft: 10 },
+              ]}
+              onPress={() => joinMeeting()}>
+              <Text
+                style={{ textAlign: 'center', color: 'white', fontWeight: 'bold' }}>
+                JOIN
+              </Text>
+            </TouchableOpacity>
+          }
         </View>
       )}
 

@@ -83,6 +83,7 @@ const appointment = {
         doctor_id: d.doctor_id,
         doctor_name: d.doctor_name,
         image: d.image,
+        meetingLink: d.meeting_link,
         status: d.status,
         status_id: d.status_id,
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
@@ -100,6 +101,7 @@ const appointment = {
       })
         .then(async res => {
           if (res.status === 200) {
+            console.log(res.data)
             resolve(appointment.formatPatients(res.data));
           } else {
             reject(res);
@@ -116,6 +118,7 @@ const appointment = {
       formatted.push({
         appointment_id: d.appointment_id,
         doctor_name: d.name,
+        meetingLink: d.meeting_link,
         status: d.status,
         status_id: d.status_id,
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
