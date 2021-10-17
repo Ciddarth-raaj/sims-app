@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   Text,
@@ -6,14 +6,15 @@ import {
   Image,
   View,
   Alert,
-} from 'react-native';
+  Linking,
+} from 'react-native'
 
-import Colors from '../constants/colors';
+import Colors from '../constants/colors'
 
-import AppointmentHelper from '../helper/appointment';
-import RescheduleModal from './rescheduleModal';
+import AppointmentHelper from '../helper/appointment'
+import RescheduleModal from './rescheduleModal'
 
-export default function AppointmentCard(props) {
+export default function AppointmentCard (props) {
   const {
     id,
     name,
@@ -24,9 +25,9 @@ export default function AppointmentCard(props) {
     status,
     status_id,
     type,
-    meetingLink
-  } = props;
-  const [isVisible, setVisible] = React.useState(false);
+    meetingLink,
+  } = props
+  const [isVisible, setVisible] = React.useState(false)
 
   const cancelAppointment = () => {
     Alert.alert(
@@ -43,32 +44,32 @@ export default function AppointmentCard(props) {
           onPress: () => cancelCall(),
         },
       ],
-    );
-  };
+    )
+  }
 
   const cancelCall = () => {
-    const data = { appointment_id: id, appointment_status: 5 };
+    const data = {appointment_id: id, appointment_status: 5}
     AppointmentHelper.update(data)
       .then(data => {
         if (data.code == 200) {
-          getAppointments();
-          alert('Appointment Cancelled');
+          getAppointments()
+          alert('Appointment Cancelled')
         } else {
-          throw 'error';
+          throw 'error'
         }
       })
       .catch(err => {
-        console.log(err);
-        alert('Error cancelling appointment! Try again later!');
-      });
-  };
+        console.log(err)
+        alert('Error cancelling appointment! Try again later!')
+      })
+  }
 
   const joinMeeting = () => {
-    alert(meetingLink)
+    Linking.openURL(meetingLink)
   }
 
   return (
-    <View style={{ marginTop: 40 }}>
+    <View style={{marginTop: 40}}>
       <RescheduleModal
         appointment_id={id}
         timeSlot={timeSlot}
@@ -77,16 +78,16 @@ export default function AppointmentCard(props) {
         navigation={navigation}
         getAppointments={() => getAppointments()}
       />
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{flexDirection: 'row'}}>
         <Image
           source={require('../assets/happydoctor.jpg')}
-          style={{ width: 80, height: 80, borderRadius: 50 }}
+          style={{width: 80, height: 80, borderRadius: 50}}
         />
-        <View style={{ justifyContent: 'center' }}>
+        <View style={{justifyContent: 'center'}}>
           <Text
             style={[
               styles.containerText,
-              { fontWeight: '700' },
+              {fontWeight: '700'},
             ]}>{`${name}`}</Text>
           <Text
             style={{
@@ -95,7 +96,7 @@ export default function AppointmentCard(props) {
               marginTop: 10,
             }}>
             {'Time : '}
-            <Text style={{ fontWeight: 'normal', color: 'black' }}>
+            <Text style={{fontWeight: 'normal', color: 'black'}}>
               {timeSlot}
             </Text>
           </Text>
@@ -107,12 +108,12 @@ export default function AppointmentCard(props) {
               marginTop: 10,
             }}>
             {'Status : '}
-            <Text style={{ fontWeight: 'normal', color: 'black' }}>{status}</Text>
+            <Text style={{fontWeight: 'normal', color: 'black'}}>{status}</Text>
           </Text>
         </View>
       </View>
 
-      {(status_id != 5 && status_id != 2) && type != 'upcoming' && (
+      {status_id != 5 && status_id != 2 && type != 'upcoming' && (
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[
@@ -125,7 +126,7 @@ export default function AppointmentCard(props) {
             ]}
             onPress={() => cancelAppointment()}>
             <Text
-              style={{ textAlign: 'center', color: 'red', fontWeight: 'bold' }}>
+              style={{textAlign: 'center', color: 'red', fontWeight: 'bold'}}>
               CANCEL
             </Text>
           </TouchableOpacity>
@@ -133,11 +134,11 @@ export default function AppointmentCard(props) {
           <TouchableOpacity
             style={[
               styles.buttonStyle,
-              { backgroundColor: Colors.secondary, marginLeft: 10 },
+              {backgroundColor: Colors.secondary, marginLeft: 10},
             ]}
             onPress={() => setVisible(true)}>
             <Text
-              style={{ textAlign: 'center', color: 'white', fontWeight: 'bold' }}>
+              style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
               RESCHEDULE
             </Text>
           </TouchableOpacity>
@@ -148,17 +149,17 @@ export default function AppointmentCard(props) {
         <TouchableOpacity
           style={[
             styles.buttonStyle,
-            { backgroundColor: Colors.secondary, marginLeft: 10 },
+            {backgroundColor: Colors.secondary, marginLeft: 10},
           ]}
           onPress={() => joinMeeting()}>
           <Text
-            style={{ textAlign: 'center', color: 'white', fontWeight: 'bold' }}>
+            style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
             JOIN MEET
           </Text>
         </TouchableOpacity>
       )}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -173,4 +174,4 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
   },
-});
+})
