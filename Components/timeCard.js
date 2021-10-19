@@ -1,8 +1,10 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React from 'react'
+import {StyleSheet, Text, TouchableOpacity} from 'react-native'
 
-export default function TimeCard(props) {
-  const {id, time, onTimeChange, selected, disabled} = props;
+import Colors from '../constants/colors'
+
+export default function TimeCard (props) {
+  const {id, time, onTimeChange, selected, disabled} = props
 
   return (
     <TouchableOpacity
@@ -14,7 +16,7 @@ export default function TimeCard(props) {
       activeOpacity={1}
       onPress={() => {
         // if (disabled == false || disabled == undefined) {
-        onTimeChange(id);
+        onTimeChange(id)
         // }
       }}>
       <Text
@@ -22,7 +24,7 @@ export default function TimeCard(props) {
         {time}
       </Text>
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -35,9 +37,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   containerSelected: {
-    backgroundColor: '#0080ff',
+    backgroundColor: Colors.secondary,
   },
   disabledContainer: {
     backgroundColor: '#d9d9d9',
   },
-});
+})
