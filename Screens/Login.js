@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import {
   StyleSheet,
@@ -8,74 +8,76 @@ import {
   Text,
   TouchableOpacity,
   Image,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import Colors from '../constants/colors';
+import Colors from '../constants/colors'
 
-import UserHelper from '../helper/user';
+import UserHelper from '../helper/user'
 
 export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       phone: '',
       password: '',
-    };
-  }
-
-  async componentDidMount() {
-    const token = await AsyncStorage.getItem('token');
-    const name = await AsyncStorage.getItem('name');
-    const role_id = await AsyncStorage.getItem('role_id');
-    if (token != undefined || token != null) {
-      global.config.accessToken = token;
-      global.config.name = name;
-      this.props.navigation.navigate(role_id == 2 ? 'DoctorHome' : 'Home');
     }
   }
 
-  login() {
-    const { phone, password } = this.state;
+  async componentDidMount () {
+    const token = await AsyncStorage.getItem('token')
+    const name = await AsyncStorage.getItem('name')
+    const role_id = await AsyncStorage.getItem('role_id')
+    if (token != undefined || token != null) {
+      global.config.accessToken = token
+      global.config.name = name
+      this.props.navigation.navigate(role_id == 2 ? 'DoctorHome' : 'Home')
+    }
+  }
+
+  login () {
+    const {phone, password} = this.state
 
     if (phone == '' || password == '') {
-      alert('Fill all fields to continue!');
-      return;
+      alert('Fill all fields to continue!')
+      return
     }
 
     if (phone.length != 10 || isNaN(phone)) {
-      alert('Invalid Phone Number!');
-      return;
+      alert('Invalid Phone Number!')
+      return
     }
 
     UserHelper.login(phone, password)
       .then(async data => {
         if (data.code == 200) {
-          await AsyncStorage.setItem('token', data.token);
-          await AsyncStorage.setItem('name', data.name);
-          await AsyncStorage.setItem('role_id', data.role_id + "");
-          global.config.accessToken = data.token;
-          global.config.name = data.name;
-          this.props.navigation.navigate(data.role_id == "2" ? "DoctorHome" : 'Home');
+          await AsyncStorage.setItem('token', data.token)
+          await AsyncStorage.setItem('name', data.name)
+          await AsyncStorage.setItem('role_id', data.role_id + '')
+          global.config.accessToken = data.token
+          global.config.name = data.name
+          this.props.navigation.navigate(
+            data.role_id == '2' ? 'DoctorHome' : 'Home',
+          )
         } else if (data.code == 404) {
-          alert('Incorrect Phone Number / Password');
+          alert('Incorrect Phone Number / Password')
         } else {
-          throw 'err';
+          throw 'err'
         }
       })
       .catch(err => {
-        console.log(err);
-        alert('Error logging in!');
-      });
+        console.log(err)
+        alert('Error logging in!')
+      })
   }
 
-  render() {
-    const { phone, password } = this.state;
+  render () {
+    const {phone, password} = this.state
     return (
       <>
-        <SafeAreaView style={{ backgroundColor: 'white' }} />
+        <SafeAreaView style={{backgroundColor: 'white'}} />
         <SafeAreaView
-          style={{ backgroundColor: 'white', flex: 1, justifyContent: 'center' }}>
+          style={{backgroundColor: 'white', flex: 1, justifyContent: 'center'}}>
           <View style={styles.wrapper}>
             <Image
               source={require('../assets/sims-logo.png')}
@@ -94,16 +96,16 @@ export default class Login extends React.Component {
             <TextInput
               value={phone}
               placeholder={'Phone Number'}
-              placeholderTextColor="#879099"
-              onChangeText={v => this.setState({ phone: v })}
+              placeholderTextColor='#879099'
+              onChangeText={v => this.setState({phone: v})}
               style={styles.textInputStyle}
               keyboardType={'phone-pad'}
             />
             <TextInput
               value={password}
               placeholder={'Password'}
-              placeholderTextColor="#879099"
-              onChangeText={v => this.setState({ password: v })}
+              placeholderTextColor='#879099'
+              onChangeText={v => this.setState({password: v})}
               style={styles.textInputStyle}
               secureTextEntry={true}
             />
@@ -116,7 +118,7 @@ export default class Login extends React.Component {
           </View>
         </SafeAreaView>
       </>
-    );
+    )
   }
 }
 
@@ -148,4 +150,4 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -120,
   },
-});
+})
