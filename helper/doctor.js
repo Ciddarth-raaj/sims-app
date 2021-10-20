@@ -1,20 +1,20 @@
-import API from '../Util/api';
+import API from '../Util/api'
 
 const doctor = {
   get: filter =>
     new Promise(function (resolve, reject) {
-      const filterUrl = doctor.getFilterUrl(filter);
+      const filterUrl = doctor.getFilterUrl(filter)
       API.get('doctor?' + filterUrl)
         .then(async res => {
           if (res.status === 200) {
-            resolve(doctor.format(res.data.doctors));
+            resolve(doctor.format(res.data.doctors))
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   getById: doctor_id =>
     new Promise(function (resolve, reject) {
@@ -22,20 +22,20 @@ const doctor = {
         .then(async res => {
           if (res.status === 200) {
             if (res.data.code == 200) {
-              resolve(res.data);
+              resolve(res.data)
             } else {
-              alert('Doctor not found!');
+              alert('Doctor not found!')
             }
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   format: data => {
-    const formatted = [];
+    const formatted = []
 
     for (const d of data) {
       formatted.push({
@@ -52,17 +52,17 @@ const doctor = {
         is_active: d.is_active,
         // created_at: '2021-07-06T06:55:14.000Z',
         // updated_at: '2021-07-06T06:55:36.000Z',
-      });
+      })
     }
 
-    return formatted;
+    return formatted
   },
   getFilterUrl: filter => {
     if (filter == undefined) {
-      return '';
+      return ''
     }
 
-    let filterUrl = '';
+    let filterUrl = ''
 
     if (
       filter.specialisations !== undefined &&
@@ -70,11 +70,11 @@ const doctor = {
     ) {
       filter.specialisations.forEach(
         (b, i) => (filterUrl += '&specialisations[' + i + ']=' + b),
-      );
+      )
     }
 
-    return filterUrl;
+    return filterUrl
   },
-};
+}
 
-export default doctor;
+export default doctor

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   View,
   Text,
@@ -8,40 +8,40 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-} from 'react-native';
+} from 'react-native'
 
-import Colors from '../constants/colors';
+import Colors from '../constants/colors'
 
-import {numberFormat} from '../Util/numberFormat';
-import ScheduleModal from '../Components/scheduleModal';
-import GlobalWrapper from '../Components/GlobalWrapper';
+import {numberFormat} from '../Util/numberFormat'
+import ScheduleModal from '../Components/scheduleModal'
+import GlobalWrapper from '../Components/GlobalWrapper'
 
-import DoctorHelper from '../helper/doctor';
+import DoctorHelper from '../helper/doctor'
 
 export default class Doctor extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       doctor_id: this.props.route.params.id,
-      name: 'Ramachandran',
-      qualification: 'MBBS',
-      specialization: 'Surgery',
-      experience: '4',
-      email: 'ABC@sims.com',
-      phone: '123456789',
-      languages: 'ENG,TAMIL',
+      name: '',
+      qualification: '',
+      specialization: '',
+      experience: '',
+      email: '',
+      phone: '',
+      languages: '',
       fees: '249',
       picture: 'xxxxx',
       isVisible: false,
       selectedDate: '',
-    };
+    }
   }
 
-  componentDidMount() {
-    this.getDoctor(this.props.route.params.id);
+  componentDidMount () {
+    this.getDoctor(this.props.route.params.id)
   }
 
-  formatData(res) {
+  formatData (res) {
     this.setState({
       name: res.doctor_name,
       qualification: res.qualification,
@@ -52,21 +52,21 @@ export default class Doctor extends React.Component {
       languages: res.languages,
       fees: res.fees ?? 200,
       picture: res.image,
-    });
+    })
   }
 
-  getDoctor(id) {
+  getDoctor (id) {
     DoctorHelper.getById(id)
       .then(data => {
-        this.formatData(data);
+        this.formatData(data)
       })
       .catch(err => {
-        console.error(err);
-        alert('Error getting details!');
-      });
+        console.error(err)
+        alert('Error getting details!')
+      })
   }
 
-  render() {
+  render () {
     const {
       name,
       qualification,
@@ -77,7 +77,7 @@ export default class Doctor extends React.Component {
       isVisible,
       selectedDate,
       doctor_id,
-    } = this.state;
+    } = this.state
     return (
       <GlobalWrapper>
         <>
@@ -99,7 +99,7 @@ export default class Doctor extends React.Component {
             <Image
               source={require('../assets/happydoctor.jpg')}
               style={{width: '100%'}}
-              resizeMode="contain"
+              resizeMode='contain'
             />
             <Text
               style={{
@@ -172,8 +172,8 @@ export default class Doctor extends React.Component {
           </View>
         </>
       </GlobalWrapper>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})

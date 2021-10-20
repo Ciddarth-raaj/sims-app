@@ -1,86 +1,86 @@
-import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import React from 'react'
+import {View, Text, SafeAreaView, StyleSheet, ScrollView} from 'react-native'
 
-import SearchHeader from '../Components/searchHeader';
-import DoctorCard from '../Components/doctorCard';
-import DiseaseCard from '../Components/diseaseCard';
-import API from '../Util/api';
-import GlobalWrapper from '../Components/GlobalWrapper';
+import SearchHeader from '../Components/searchHeader'
+import DoctorCard from '../Components/doctorCard'
+import DiseaseCard from '../Components/diseaseCard'
+import API from '../Util/api'
+import GlobalWrapper from '../Components/GlobalWrapper'
 
-import DoctorHelper from '../helper/doctor';
-import SpecialisationHelper from '../helper/specialisation';
+import DoctorHelper from '../helper/doctor'
+import SpecialisationHelper from '../helper/specialisation'
 export default class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       docList: [],
       specList: [],
       sortedDocList: [],
       sortedSpecList: [],
-    };
+    }
   }
 
-  componentDidMount() {
-    this.getSpecializations();
-    this.getDoctors();
+  componentDidMount () {
+    this.getSpecializations()
+    this.getDoctors()
   }
 
-  getSpecializations() {
+  getSpecializations () {
     SpecialisationHelper.get()
       .then(data => {
-        console.log(data);
-        this.setState({specList: data});
+        console.log(data)
+        this.setState({specList: data})
       })
       .then(data => {
-        console.log(err);
-        alert('Error Getting Specialisations');
-      });
+        console.log(err)
+        alert('Error Getting Specialisations')
+      })
   }
 
-  getDoctors() {
+  getDoctors () {
     DoctorHelper.get()
       .then(data => {
-        this.setState({docList: data});
+        this.setState({docList: data})
       })
       .catch(err => {
-        console.log(err);
-        alert('Error Getting Doctor Details!');
-      });
+        console.log(err)
+        alert('Error Getting Doctor Details!')
+      })
   }
 
-  handleSearch(str) {
-    const {docList, specList} = this.state;
-    str = str.toLowerCase();
+  handleSearch (str) {
+    const {docList, specList} = this.state
+    str = str.toLowerCase()
     if (str.length > 2) {
-      const newDocList = [];
+      const newDocList = []
       for (let d of docList) {
         if (
           d.doctor_name?.toLowerCase().includes(str) ||
           d.qualification?.toLowerCase().includes(str) ||
           d.specialisation?.toLowerCase().includes(str)
         ) {
-          newDocList.push(d);
+          newDocList.push(d)
         }
       }
 
-      const newSpecList = [];
+      const newSpecList = []
       for (let d of specList) {
         if (
           d.label?.toLowerCase().includes(str) ||
           d.subtext?.toLowerCase().includes(str)
         ) {
-          newSpecList.push(d);
+          newSpecList.push(d)
         }
       }
 
-      this.setState({sortedDocList: newDocList, sortedSpecList: newSpecList});
+      this.setState({sortedDocList: newDocList, sortedSpecList: newSpecList})
     } else if (str.length == 0) {
-      this.setState({sortedDocList: [], sortedSpecList: []});
+      this.setState({sortedDocList: [], sortedSpecList: []})
     }
   }
 
-  render() {
-    const {docList, specList, sortedDocList, sortedSpecList} = this.state;
+  render () {
+    const {docList, specList, sortedDocList, sortedSpecList} = this.state
 
     return (
       <GlobalWrapper>
@@ -104,7 +104,7 @@ export default class Search extends React.Component {
             <Text style={[styles.titleText, {marginTop: 20}]}>Doctors</Text>
             {(sortedDocList.length > 0 ? sortedDocList : docList).map(d => (
               <DoctorCard
-                id={d.id}
+                id={d.doctor_id}
                 name={d.doctor_name}
                 qualification={d.qualification}
                 specialization={d.specialisation}
@@ -117,7 +117,7 @@ export default class Search extends React.Component {
           </View>
         </View>
       </GlobalWrapper>
-    );
+    )
   }
 }
 
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 16,
   },
-});
+})

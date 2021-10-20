@@ -1,12 +1,12 @@
-import React from 'react';
-import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
-import {useState} from 'react';
+import React from 'react'
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native'
+import {useState} from 'react'
 
-import Colors from '../constants/colors';
+import Colors from '../constants/colors'
 
-import {numberFormat} from '../Util/numberFormat';
+import {numberFormat} from '../Util/numberFormat'
 
-export default function DoctorCard(props) {
+export default function DoctorCard (props) {
   const {
     id,
     name,
@@ -16,7 +16,9 @@ export default function DoctorCard(props) {
     languages,
     fees,
     navigation,
-  } = props;
+  } = props
+
+  console.log(name, id)
 
   return (
     <View style={{marginBottom: 20}}>
@@ -66,7 +68,7 @@ export default function DoctorCard(props) {
         </Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -90,4 +92,4 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 10,
   },
-});
+})
