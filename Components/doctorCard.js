@@ -40,7 +40,7 @@ export default function DoctorCard (props) {
             style={[
               styles.containerText,
               {fontWeight: '700'},
-            ]}>{`Dr ${name}`}</Text>
+            ]}>{`${name}`}</Text>
           <Text
             style={[
               styles.containerText,
