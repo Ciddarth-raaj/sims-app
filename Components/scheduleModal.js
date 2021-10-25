@@ -21,12 +21,17 @@ import PatientsHelper from '../helper/patients'
 import AppointmentHelper from '../helper/appointment'
 import moment from 'moment'
 
+const minDate = new Date()
+minDate.setDate(minDate.getDate() + 1)
+
+const maxDate = new Date()
+maxDate.setDate(maxDate.getDate() + 2)
+
 export default function ScheduleModal (props) {
   let order_id = undefined
   let patientDetails = undefined
   const {isVisible, fee, close, navigation} = props
   const [date, setDate] = React.useState(new Date())
-  const minDate = new Date()
   const [availableDates, setAvailableDates] = React.useState([
     {id: 1, time: '09:30 AM', selected: false},
     {id: 2, time: '10:30 AM', selected: false},
@@ -207,6 +212,7 @@ export default function ScheduleModal (props) {
               }}
               // scaleFactor={400}
               minDate={minDate}
+              maxDate={maxDate}
               selectedDayColor='#e1f0ff'
               selectedDayTextColor='#004b96'
               todayBackgroundColor='#ffffff'

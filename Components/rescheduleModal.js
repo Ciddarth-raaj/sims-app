@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 import {
   StyleSheet,
   View,
@@ -6,29 +6,34 @@ import {
   Modal,
   ScrollView,
   TouchableOpacity,
-} from 'react-native';
+} from 'react-native'
 
-import Colors from '../constants/colors';
+import Colors from '../constants/colors'
 
-import {numberFormat} from '../Util/numberFormat';
-import CalendarPicker from 'react-native-calendar-picker';
+import {numberFormat} from '../Util/numberFormat'
+import CalendarPicker from 'react-native-calendar-picker'
 
-import TimeCard from './timeCard';
+import TimeCard from './timeCard'
 
-import OrdersHelper from '../helper/orders';
-import PatientsHelper from '../helper/patients';
-import AppointmentHelper from '../helper/appointment';
-import moment from 'moment';
+import OrdersHelper from '../helper/orders'
+import PatientsHelper from '../helper/patients'
+import AppointmentHelper from '../helper/appointment'
+import moment from 'moment'
 
-export default function ScheduleModal(props) {
-  let order_id = undefined;
-  let patientDetails = undefined;
+const minDate = new Date()
+minDate.setDate(minDate.getDate() + 1)
 
-  const {isVisible, fee, close, navigation, getAppointments} = props;
+const maxDate = new Date()
+maxDate.setDate(maxDate.getDate() + 2)
+
+export default function ScheduleModal (props) {
+  let order_id = undefined
+  let patientDetails = undefined
+
+  const {isVisible, fee, close, navigation, getAppointments} = props
   const [date, setDate] = React.useState(
     new Date(moment(props.timeSlot, 'hh:mm A - ddd - DD,MMM')),
-  );
-  const minDate = new Date();
+  )
   const [availableDates, setAvailableDates] = React.useState([
     {id: 1, time: '09:30 AM', selected: false},
     {id: 2, time: '10:30 AM', selected: false},
@@ -38,7 +43,7 @@ export default function ScheduleModal(props) {
     {id: 6, time: '12:30 PM', selected: false},
     {id: 7, time: '03:00 PM', selected: false},
     {id: 8, time: '03:30 PM', selected: false},
-  ]);
+  ])
 
   useEffect(() => {
     if (
@@ -50,45 +55,45 @@ export default function ScheduleModal(props) {
           availableDates[i].time ==
           moment(props.timeSlot, 'hh:mm A - ddd - DD,MMM').format('hh:mm')
         ) {
-          availableDates[i].selected = true;
-          break;
+          availableDates[i].selected = true
+          break
         } else {
-          availableDates[i].selected = false;
+          availableDates[i].selected = false
         }
       }
-      setAvailableDates([...availableDates]);
+      setAvailableDates([...availableDates])
     } else {
       for (let i in availableDates) {
         if (i == 0) {
-          availableDates[i].selected = true;
-          continue;
+          availableDates[i].selected = true
+          continue
         }
-        availableDates[i].selected = false;
+        availableDates[i].selected = false
       }
-      setAvailableDates([...availableDates]);
+      setAvailableDates([...availableDates])
     }
-  }, [date]);
+  }, [date])
 
   onTimeChange = id => {
     const newAvailableDates = availableDates.map(d => {
       if (d.id === id) {
-        d.selected = true;
+        d.selected = true
       } else {
-        d.selected = false;
+        d.selected = false
       }
-      return d;
-    });
+      return d
+    })
 
-    setAvailableDates([...newAvailableDates]);
-  };
+    setAvailableDates([...newAvailableDates])
+  }
 
   const updateAppoinment = () => {
-    let selectedDate = undefined;
+    let selectedDate = undefined
 
     for (const i in availableDates) {
       if (availableDates[i].selected == true) {
-        selectedDate = availableDates[i].time;
-        break;
+        selectedDate = availableDates[i].time
+        break
       }
     }
 
@@ -97,33 +102,33 @@ export default function ScheduleModal(props) {
       'YYYY-MM-DD hh:mm A',
     )
       .utc()
-      .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]');
+      .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]')
 
     const data = {
       appointment_id: props.appointment_id,
       timeslot: new Date(formattedDate).toISOString(),
-    };
+    }
 
     AppointmentHelper.update(data)
       .then(data => {
         if (data.code == 200) {
-          getAppointments();
-          alert('Rescheduled!');
-          close();
+          getAppointments()
+          alert('Rescheduled!')
+          close()
         } else if (data.code == 201) {
-          alert('Slot not available!');
+          alert('Slot not available!')
         } else {
-          throw 'undefined code';
+          throw 'undefined code'
         }
       })
       .catch(err => {
-        alert('Error rescheduling appointment! Try Again Later!');
-        console.log(err);
-      });
-  };
+        alert('Error rescheduling appointment! Try Again Later!')
+        console.log(err)
+      })
+  }
 
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
+    <Modal animationType='slide' transparent={true} visible={isVisible}>
       <View
         style={{
           justifyContent: 'center',
@@ -149,14 +154,15 @@ export default function ScheduleModal(props) {
             </TouchableOpacity>
             <CalendarPicker
               onDateChange={date => {
-                setDate(new Date(date));
+                setDate(new Date(date))
               }}
               // scaleFactor={400}
               initialDate={date}
               minDate={minDate}
-              selectedDayColor="#e1f0ff"
-              selectedDayTextColor="#004b96"
-              todayBackgroundColor="#ffffff"
+              maxDate={maxDate}
+              selectedDayColor='#e1f0ff'
+              selectedDayTextColor='#004b96'
+              todayBackgroundColor='#ffffff'
               width={350}
             />
             <View style={[styles.blueContainer, {marginTop: 20}]}>
@@ -206,7 +212,7 @@ export default function ScheduleModal(props) {
                 // close();
                 // createRazorpay();
                 // navigation.navigate('Success');
-                updateAppoinment();
+                updateAppoinment()
               }}>
               <Text
                 style={{
@@ -221,7 +227,7 @@ export default function ScheduleModal(props) {
         </View>
       </View>
     </Modal>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -248,4 +254,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   blueContainerText: {color: '#004b96', marginTop: 10, textAlign: 'center'},
-});
+})
