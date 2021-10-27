@@ -107,7 +107,7 @@ export default class Doctor extends React.Component {
                 fontSize: 22,
                 color: '#00264b',
                 marginTop: 10,
-              }}>{`Dr ${name}`}</Text>
+              }}>{`${name}`}</Text>
             <View
               style={{
                 height: 1,
