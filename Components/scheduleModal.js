@@ -12,7 +12,7 @@ import Colors from '../constants/colors'
 
 import CalendarPicker from 'react-native-calendar-picker'
 import RazorpayCheckout from 'react-native-razorpay'
-import {numberFormat} from '../Util/numberFormat'
+import { numberFormat } from '../Util/numberFormat'
 
 import TimeCard from './timeCard'
 
@@ -27,20 +27,20 @@ minDate.setDate(minDate.getDate() + 1)
 const maxDate = new Date()
 maxDate.setDate(maxDate.getDate() + 2)
 
-export default function ScheduleModal (props) {
+export default function ScheduleModal(props) {
   let order_id = undefined
   let patientDetails = undefined
-  const {isVisible, fee, close, navigation} = props
+  const { isVisible, fee, close, navigation } = props
   const [date, setDate] = React.useState(new Date())
   const [availableDates, setAvailableDates] = React.useState([
-    {id: 1, time: '09:30 AM', selected: false},
-    {id: 2, time: '10:30 AM', selected: false},
-    {id: 3, time: '11:00 AM', selected: false},
-    {id: 4, time: '11:30 AM', selected: false},
-    {id: 5, time: '12:00 PM', selected: false},
-    {id: 6, time: '12:30 PM', selected: false},
-    {id: 7, time: '03:00 PM', selected: false},
-    {id: 8, time: '03:30 PM', selected: false},
+    { id: 1, time: '09:30 AM', selected: false },
+    { id: 2, time: '10:30 AM', selected: false },
+    { id: 3, time: '11:00 AM', selected: false },
+    { id: 4, time: '11:30 AM', selected: false },
+    { id: 5, time: '12:00 PM', selected: false },
+    { id: 6, time: '12:30 PM', selected: false },
+    { id: 7, time: '03:00 PM', selected: false },
+    { id: 8, time: '03:30 PM', selected: false },
   ])
 
   onTimeChange = id => {
@@ -77,13 +77,13 @@ export default function ScheduleModal (props) {
     }
   }
 
-  const createOrder = mobile => {
+  const createOrder = (mobile, razorpay_order_id, razorpay_payment_id) => {
     OrdersHelper.create({
       mobile,
     })
       .then(data => {
         if ((data.code = '200')) {
-          createAppoinment()
+          createAppoinment(razorpay_order_id, razorpay_payment_id)
         } else {
           throw 'err'
         }
@@ -104,7 +104,7 @@ export default function ScheduleModal (props) {
         amount: fee,
         name: 'SIMS Hospital',
         order_id: order_id,
-        theme: {color: Colors.secondary},
+        theme: { color: Colors.secondary },
       }
 
       if (patientDetails.code == 200) {
@@ -118,10 +118,10 @@ export default function ScheduleModal (props) {
       RazorpayCheckout.open(options)
         .then(data => {
           close()
-          createOrder(patientDetails.phone)
+          createOrder(patientDetails.phone, data.razorpay_order_id, data.razorpay_payment_id)
         })
         .catch(error => {
-          throw {code: error.code, error: error}
+          throw { code: error.code, error: error }
         })
     } catch (err) {
       console.log(err)
@@ -138,7 +138,7 @@ export default function ScheduleModal (props) {
         .catch(err => reject(err))
     })
 
-  const createAppoinment = () => {
+  const createAppoinment = (razorpay_order_id, razorpay_payment_id) => {
     let selectedDate = undefined
 
     for (const i in availableDates) {
@@ -158,6 +158,8 @@ export default function ScheduleModal (props) {
     const data = {
       timeslot: new Date(formattedDate).toISOString(),
       doctor_id: props.doctor_id,
+      razorpay_order_id: razorpay_order_id,
+      razorpay_payment_id: razorpay_payment_id
     }
 
     AppointmentHelper.create(data)
@@ -191,7 +193,7 @@ export default function ScheduleModal (props) {
           backgroundColor: 'rgba(52, 52, 52, 0.5)',
         }}>
         <View style={styles.mainContainer}>
-          <ScrollView style={{height: '100%'}}>
+          <ScrollView style={{ height: '100%' }}>
             <TouchableOpacity
               style={{
                 backgroundColor: 'whitesmoke',
@@ -204,7 +206,7 @@ export default function ScheduleModal (props) {
                 marginRight: 10,
               }}
               onPress={() => close()}>
-              <Text style={{textAlign: 'center'}}>x</Text>
+              <Text style={{ textAlign: 'center' }}>x</Text>
             </TouchableOpacity>
             <CalendarPicker
               onDateChange={date => {
@@ -219,7 +221,7 @@ export default function ScheduleModal (props) {
               width={350}
             />
 
-            <View style={[styles.blueContainer, {marginTop: 20}]}>
+            <View style={[styles.blueContainer, { marginTop: 20 }]}>
               <Text style={styles.blueContainerTitle}>Selected Date</Text>
               <Text style={styles.blueContainerText}>
                 {moment(date).format('DD/MM/YYYY')}
@@ -230,7 +232,7 @@ export default function ScheduleModal (props) {
               <Text
                 style={[
                   styles.blueContainerTitle,
-                  {marginTop: 20, textAlign: 'center'},
+                  { marginTop: 20, textAlign: 'center' },
                 ]}>
                 Pick Your Time Slot
               </Text>
@@ -306,5 +308,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  blueContainerText: {color: '#004b96', marginTop: 10, textAlign: 'center'},
+  blueContainerText: { color: '#004b96', marginTop: 10, textAlign: 'center' },
 })
