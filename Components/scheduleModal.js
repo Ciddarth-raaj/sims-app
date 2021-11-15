@@ -77,9 +77,10 @@ export default function ScheduleModal(props) {
     }
   }
 
-  const createOrder = (mobile, razorpay_order_id, razorpay_payment_id) => {
+  const createOrder = (mobile, email, razorpay_order_id, razorpay_payment_id) => {
     OrdersHelper.create({
       mobile,
+      email
     })
       .then(data => {
         if ((data.code = '200')) {
@@ -118,7 +119,7 @@ export default function ScheduleModal(props) {
       RazorpayCheckout.open(options)
         .then(data => {
           close()
-          createOrder(patientDetails.phone, data.razorpay_order_id, data.razorpay_payment_id)
+          createOrder(patientDetails.phone, patientDetails.email, data.razorpay_order_id, data.razorpay_payment_id)
         })
         .catch(error => {
           throw { code: error.code, error: error }
