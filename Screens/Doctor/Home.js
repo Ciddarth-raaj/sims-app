@@ -93,7 +93,7 @@ export default class Home extends React.Component {
                         />
                     </View>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.container1}
                         onPress={() => this.props.navigation.navigate('Upcoming')}>
                         <View style={styles.counterWrap}>
@@ -103,7 +103,7 @@ export default class Home extends React.Component {
                         </View>
                         <Text style={styles.container1Text}>Upcoming Appointments</Text>
                         <Text style={styles.container1Text}>{'>'}</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </>
             </GlobalWrapper>
         );
