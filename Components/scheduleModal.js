@@ -31,7 +31,7 @@ export default function ScheduleModal(props) {
   let order_id = undefined
   let patientDetails = undefined
   const { isVisible, fee, close, navigation } = props
-  const [date, setDate] = React.useState(new Date())
+  const [date, setDate] = React.useState(minDate)
   const [availableDates, setAvailableDates] = React.useState([
     { id: 1, time: '09:30 AM', selected: false },
     { id: 2, time: '10:30 AM', selected: false },
@@ -77,21 +77,9 @@ export default function ScheduleModal(props) {
     }
   }
 
-  const createOrder = (mobile, email, razorpay_order_id, razorpay_payment_id) => {
-    OrdersHelper.create({
-      mobile,
-      email
-    })
-      .then(data => {
-        if ((data.code = '200')) {
-          createAppoinment(razorpay_order_id, razorpay_payment_id)
-        } else {
-          throw 'err'
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  const createOrder = async (mobile, email, razorpay_order_id, razorpay_payment_id) => {
+    createAppoinment(razorpay_order_id, razorpay_payment_id)
+    await OrdersHelper.create({ mobile, email })
   }
 
   const openPayment = async order_id => {
@@ -140,48 +128,52 @@ export default function ScheduleModal(props) {
     })
 
   const createAppoinment = (razorpay_order_id, razorpay_payment_id) => {
-    let selectedDate = undefined
+    return new Promise((resolve, reject) => {
+      let selectedDate = undefined
 
-    for (const i in availableDates) {
-      if (availableDates[i].selected == true) {
-        selectedDate = availableDates[i].time
-        break
-      }
-    }
-
-    const formattedDate = moment(
-      moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
-      'YYYY-MM-DD hh:mm A',
-    )
-      .utc()
-      .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]')
-
-    const data = {
-      timeslot: new Date(formattedDate).toISOString(),
-      doctor_id: props.doctor_id,
-      razorpay_order_id: razorpay_order_id,
-      razorpay_payment_id: razorpay_payment_id
-    }
-
-    AppointmentHelper.create(data)
-      .then(data => {
-        if (data.code == 200) {
-          alert('Booked!')
-          navigation.navigate('Success', {
-            doctor_id: props.doctor_id,
-            doctor_name: props.doctor_name,
-            timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
-          })
-        } else if (data.code == 201) {
-          alert('Slot not available!')
-        } else {
-          throw 'undefined code'
+      for (const i in availableDates) {
+        if (availableDates[i].selected == true) {
+          selectedDate = availableDates[i].time
+          break
         }
-      })
-      .catch(err => {
-        alert('Error booking appointment! Try Again Later!')
-        console.log(err)
-      })
+      }
+
+      const formattedDate = moment(
+        moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+        'YYYY-MM-DD hh:mm A',
+      )
+        .utc()
+        .format('YYYY-MM-DD[T]HH:mm:ss.000[Z]')
+
+      const data = {
+        timeslot: new Date(formattedDate).toISOString(),
+        doctor_id: props.doctor_id,
+        razorpay_order_id: razorpay_order_id,
+        razorpay_payment_id: razorpay_payment_id
+      }
+
+      AppointmentHelper.create(data)
+        .then(data => {
+          if (data.code == 200) {
+            alert('Booked!')
+            navigation.navigate('Success', {
+              doctor_id: props.doctor_id,
+              doctor_name: props.doctor_name,
+              timeslot: moment(date).format('YYYY-MM-DD') + ' ' + selectedDate,
+            })
+          } else if (data.code == 201) {
+            alert('Slot not available!')
+          } else {
+            throw 'undefined code'
+          }
+          resolve()
+        })
+        .catch(err => {
+          alert('Error booking appointment! Try Again Later!')
+          console.log(err)
+          reject()
+        })
+    })
   }
 
   return (
