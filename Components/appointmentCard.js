@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 import {
   StyleSheet,
@@ -27,6 +28,7 @@ export default function AppointmentCard (props) {
     type,
     meetingLink,
   } = props
+
   const [isVisible, setVisible] = React.useState(false)
 
   const cancelAppointment = () => {
@@ -145,19 +147,22 @@ export default function AppointmentCard (props) {
         </View>
       )}
 
-      {(type == 'upcoming' || status_id == 2) && joinMeeting != null && (
-        <TouchableOpacity
-          style={[
-            styles.buttonStyle,
-            {backgroundColor: Colors.secondary, marginLeft: 10},
-          ]}
-          onPress={() => joinMeeting()}>
-          <Text
-            style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
-            JOIN MEET
-          </Text>
-        </TouchableOpacity>
-      )}
+      {(type == 'upcoming' || status_id == 2) &&
+        joinMeeting != null &&
+        moment(timeSlot, 'hh:mm A - ddd - DD,MMM') <= moment() &&
+        moment(timeSlot, 'hh:mm A - ddd - DD,MMM').add(30, 'm') >= moment() && (
+          <TouchableOpacity
+            style={[
+              styles.buttonStyle,
+              {backgroundColor: Colors.secondary, marginLeft: 10},
+            ]}
+            onPress={() => joinMeeting()}>
+            <Text
+              style={{textAlign: 'center', color: 'white', fontWeight: 'bold'}}>
+              JOIN MEET
+            </Text>
+          </TouchableOpacity>
+        )}
     </View>
   )
 }
