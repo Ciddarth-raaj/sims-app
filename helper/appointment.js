@@ -1,5 +1,5 @@
-import moment from 'moment';
-import API from '../Util/api';
+import moment from 'moment'
+import API from '../Util/api'
 
 const appointment = {
   create: data =>
@@ -11,14 +11,14 @@ const appointment = {
       })
         .then(async res => {
           if (res.status === 200) {
-            resolve(res.data);
+            resolve(res.data)
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   update: data =>
     new Promise(function (resolve, reject) {
@@ -29,14 +29,14 @@ const appointment = {
       })
         .then(async res => {
           if (res.status === 200) {
-            resolve(res.data);
+            resolve(res.data)
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   get: () =>
     new Promise(function (resolve, reject) {
@@ -47,14 +47,14 @@ const appointment = {
       })
         .then(async res => {
           if (res.status === 200) {
-            resolve(appointment.format(res.data));
+            resolve(appointment.format(res.data))
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   getUpcoming: () =>
     new Promise(function (resolve, reject) {
@@ -65,17 +65,35 @@ const appointment = {
       })
         .then(async res => {
           if (res.status === 200) {
-            resolve(appointment.format(res.data));
+            resolve(appointment.format(res.data))
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
+    }),
+  getUpcomingDoctor: () =>
+    new Promise(function (resolve, reject) {
+      API.get('appointment/upcoming/doctor', {
+        headers: {
+          'x-access-token': global.config.accessToken,
+        },
+      })
+        .then(async res => {
+          if (res.status === 200) {
+            resolve(appointment.format(res.data))
+          } else {
+            reject(res)
+          }
+        })
+        .catch(err => {
+          reject(err)
+        })
     }),
   format: data => {
-    const formatted = [];
+    const formatted = []
 
     for (const d of data) {
       formatted.push({
@@ -87,10 +105,10 @@ const appointment = {
         status: d.status,
         status_id: d.status_id,
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
-      });
+      })
     }
 
-    return formatted;
+    return formatted
   },
   getPatients: () =>
     new Promise(function (resolve, reject) {
@@ -102,17 +120,17 @@ const appointment = {
         .then(async res => {
           if (res.status === 200) {
             console.log(res.data)
-            resolve(appointment.formatPatients(res.data));
+            resolve(appointment.formatPatients(res.data))
           } else {
-            reject(res);
+            reject(res)
           }
         })
         .catch(err => {
-          reject(err);
-        });
+          reject(err)
+        })
     }),
   formatPatients: data => {
-    const formatted = [];
+    const formatted = []
 
     for (const d of data) {
       formatted.push({
@@ -122,11 +140,11 @@ const appointment = {
         status: d.status,
         status_id: d.status_id,
         timeslot: moment(d.timeslot).format('hh:mm A - ddd - DD,MMM'),
-      });
+      })
     }
 
-    return formatted;
+    return formatted
   },
-};
+}
 
-export default appointment;
+export default appointment
